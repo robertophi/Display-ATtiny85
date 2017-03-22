@@ -46,4 +46,22 @@ void Port::changeGlobalPullup(char mode){
 		MCUCR &= ~(0x01 << PUD);
 	}
 }
+void Port::shift74ch595(char data, char DATAPIN, char SHPIN, char STPIN){
+	char i,ch;
+	write(STPIN,0);
 
+	for(i=0;i<8;i++){
+		ch = data >> i;
+		ch = ch & 0x01;
+		write(DATAPIN,ch);
+		_delay_us(TIME);
+		write(SHPIN,1);
+		_delay_us(TIME);
+		write(SHPIN,0);
+		_delay_us(TIME);
+	}
+	
+	write(STPIN,1);
+	_delay_us(TIME);
+	write(STPIN,0);	
+}
