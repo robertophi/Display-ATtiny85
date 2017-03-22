@@ -34,7 +34,7 @@ char Port::read(char pin){
 	return ch;
 }
 void Port::write(char pin, char state){
-	PORTB = (DDRB & ~(0x01 << pin)) | (state << pin); 
+	PORTB = (PORTB & ~(0x01 << pin)) | (state << pin); 
 }
 void Port::changeGlobalPullup(char mode){
 	//mode = 1 -> disable pull ups

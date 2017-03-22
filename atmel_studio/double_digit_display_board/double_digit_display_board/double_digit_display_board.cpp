@@ -4,12 +4,17 @@
  * Created: 11/03/2017 22:43:20
  *  Author: Roberto
  */ 
-#include <avr/io.h>
-#include <util/delay.h>
-#include "Port.cpp"
+
 //Frequencia e intervalo do serial shifter
 #define F_CPU 8000000UL
 #define TIME 10
+
+
+#include <avr/io.h>
+#include <util/delay.h>
+#include "Port.cpp"
+
+
 
 //Segmentos e-d-g-f-a-b-c-p
 #define n0 0b11011110
@@ -32,28 +37,55 @@ void sendData(char cmd);
 #define DATAPIN PB0
 #define SHPIN PB2
 #define STPIN PB1
-#define LEDPIN PB3
-#define SWPIN PB4
+#define LEDPIN PB4
+#define SWPIN PB3
 
+Port port;
 int main(void)
 {
 	
 
-	//STPIN = data
-	//SHPIN = clk
-	//DATAPIN = latch
 	char display[10] = {n0,n1,n2,n3,n4,n5,n6,n7,n8,n9};
-	DDRB = 0x00|(0x01 << STPIN )|(0x01 << SHPIN)|(0x01 << DATAPIN)|(0x01<<LEDPIN);
-	PORTB = 0x00;
+		
+
+	port.setMode(DATAPIN,OUT); //out pb0
+	port.setMode(SHPIN,OUT); //out pb2
+	port.setMode(STPIN,OUT); //out pb1
+	//port.setMode(SWPIN,IN); 
+	//port.changePullUp(SWPIN,0);
+	port.setMode(LEDPIN,OUT);
+	
+	
+	
 	int n=0,i=0,j=0;
+	char ch;
 	while(1){
 		i = n/10;
 		j = n%10;
 		
-		sendData(display[j]);
-		sendData(display[i]);
-		_delay_ms(300);
-		PORTB=(PORTB^(0x01 << LEDPIN));
+		
+		
+		port.write(DATAPIN,0);
+		_delay_us(30);
+		port.write(STPIN,0);
+		_delay_us(30);
+		port.write(SHPIN,0);
+		_delay_us(200);
+		
+		port.write(DATAPIN,1);
+		_delay_us(30);
+		port.write(STPIN,1);
+		_delay_us(30);
+		port.write(SHPIN,1);
+		_delay_us(200);
+		
+		
+		
+		//sendData(display[j]);
+		//sendData(display[i]);
+		
+	
+		
 
 		n++;
 		if(n>99) n=0;
@@ -62,6 +94,31 @@ int main(void)
 	return 0;
 
 }
+/*
+void sendData(char data){
+	char i,ch;
+	port.write(STPIN,0);
+
+	for(i=0;i<8;i++){
+		ch = data >> i;
+		ch = ch & 0x01;
+		port.write(DATAPIN,ch);
+		_delay_us(TIME);
+		port.write(SHPIN,1);
+		_delay_us(TIME);
+		port.write(SHPIN,0);
+		_delay_us(TIME);
+	}
+	
+	port.write(STPIN,1);
+	_delay_us(TIME);
+	port.write(STPIN,0);
+}
+
+*/
+
+
+
 
 void sendData(char data){
 	char i,ch;
