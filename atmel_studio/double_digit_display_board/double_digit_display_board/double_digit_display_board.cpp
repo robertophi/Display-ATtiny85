@@ -104,27 +104,3 @@ void sendData(char data){
 
 
 
-
-/*
-void sendData(char data){
-	char i,ch;
-	PORTB = PORTB & ~(0x01 << STPIN);
-	for(i=0;i<8;i++){
-		ch = data >> i;
-		ch = ch & 0x01;
-		ch = ch << DATAPIN;
-		
-		PORTB = (PORTB & ~(0x01 << DATAPIN)) | ch;
-		_delay_us(TIME);
-		port.write(SHPIN,1);
-		_delay_us(TIME);
-		PORTB = PORTB & ~(0x01 << SHPIN);
-		_delay_us(TIME);
-	}
-	
-	PORTB = PORTB | (0x01 << STPIN);
-	_delay_us(TIME);
-	PORTB = PORTB & ~(0x01 << STPIN);
-}
-
-*/
