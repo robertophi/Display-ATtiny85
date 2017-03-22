@@ -57,7 +57,7 @@ int main(void)
 	
 	
 	
-	int n=0,i=0,j=0;
+	int n=99,i=0,j=0;
 	char ch;
 	while(1){
 		i = n/10;
@@ -67,39 +67,18 @@ int main(void)
 		
 		
 		
-		
-		sendData(display[j]);
-		sendData(display[i]);
-		
+		port.shift74ch595(display[j],DATAPIN,SHPIN,STPIN);
+		port.shift74ch595(display[i],DATAPIN,SHPIN,STPIN);
+	
 	
 		_delay_ms(300);
 
-		n++;
-		if(n>99) n=0;
+		n--;
+		if(n<=0) n=99;
 	
 	}
 	return 0;
 
-}
-
-void sendData(char data){
-	char i,ch;
-	port.write(STPIN,0);
-
-	for(i=0;i<8;i++){
-		ch = data >> i;
-		ch = ch & 0x01;
-		port.write(DATAPIN,ch);
-		_delay_us(TIME);
-		port.write(SHPIN,1);
-		_delay_us(TIME);
-		port.write(SHPIN,0);
-		_delay_us(TIME);
-	}
-	
-	port.write(STPIN,1);
-	_delay_us(TIME);
-	port.write(STPIN,0);
 }
 
 

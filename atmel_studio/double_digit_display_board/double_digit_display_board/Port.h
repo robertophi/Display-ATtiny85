@@ -14,7 +14,7 @@ public:
 	char read(char pin);
 	void write(char pin, char state);
 	void changeGlobalPullup(char mode);
-	
+	void shift74ch595(char data, char DATAPIN, char SHPIN, char STPIN);
 protected:
 private:
 };

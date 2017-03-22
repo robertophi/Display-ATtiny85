@@ -3,29 +3,29 @@ double_digit_display_board.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .text         00000240  00000000  00000000  00000094  2**1
+  0 .text         00000280  00000000  00000000  00000094  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .data         0000000a  00800060  00000240  000002d4  2**0
+  1 .data         0000000a  00800060  00000280  00000314  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  2 .bss          00000001  0080006a  0080006a  000002de  2**0
+  2 .bss          00000001  0080006a  0080006a  0000031e  2**0
                   ALLOC
-  3 .comment      00000030  00000000  00000000  000002de  2**0
+  3 .comment      00000030  00000000  00000000  0000031e  2**0
                   CONTENTS, READONLY
-  4 .debug_aranges 00000060  00000000  00000000  0000030e  2**0
+  4 .debug_aranges 00000060  00000000  00000000  0000034e  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_info   0000083a  00000000  00000000  0000036e  2**0
+  5 .debug_info   00000911  00000000  00000000  000003ae  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_abbrev 00000316  00000000  00000000  00000ba8  2**0
+  6 .debug_abbrev 00000313  00000000  00000000  00000cbf  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_line   00000283  00000000  00000000  00000ebe  2**0
+  7 .debug_line   00000280  00000000  00000000  00000fd2  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_frame  000000c8  00000000  00000000  00001144  2**2
+  8 .debug_frame  000000e4  00000000  00000000  00001254  2**2
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_str    00000329  00000000  00000000  0000120c  2**0
+  9 .debug_str    00000350  00000000  00000000  00001338  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_loc    00000378  00000000  00000000  00001535  2**0
+ 10 .debug_loc    0000046a  00000000  00000000  00001688  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_ranges 00000068  00000000  00000000  000018ad  2**0
+ 11 .debug_ranges 00000068  00000000  00000000  00001af2  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -48,7 +48,7 @@ Disassembly of section .text:
   1c:	26 c0       	rjmp	.+76     	; 0x6a <__bad_interrupt>
 
 0000001e <__ctors_start>:
-  1e:	ed 00       	.word	0x00ed	; ????
+  1e:	0d 01       	movw	r0, r26
 
 00000020 <__ctors_end>:
   20:	11 24       	eor	r1, r1
@@ -62,7 +62,7 @@ Disassembly of section .text:
   2c:	10 e0       	ldi	r17, 0x00	; 0
   2e:	a0 e6       	ldi	r26, 0x60	; 96
   30:	b0 e0       	ldi	r27, 0x00	; 0
-  32:	e0 e4       	ldi	r30, 0x40	; 64
+  32:	e0 e8       	ldi	r30, 0x80	; 128
   34:	f2 e0       	ldi	r31, 0x02	; 2
   36:	02 c0       	rjmp	.+4      	; 0x3c <__do_copy_data+0x10>
   38:	05 90       	lpm	r0, Z+
@@ -92,12 +92,12 @@ Disassembly of section .text:
   58:	03 c0       	rjmp	.+6      	; 0x60 <__do_global_ctors+0xe>
   5a:	22 97       	sbiw	r28, 0x02	; 2
   5c:	fe 01       	movw	r30, r28
-  5e:	ea d0       	rcall	.+468    	; 0x234 <__tablejump__>
+  5e:	0a d1       	rcall	.+532    	; 0x274 <__tablejump__>
   60:	ce 31       	cpi	r28, 0x1E	; 30
   62:	d1 07       	cpc	r29, r17
   64:	d1 f7       	brne	.-12     	; 0x5a <__do_global_ctors+0x8>
-  66:	66 d0       	rcall	.+204    	; 0x134 <main>
-  68:	e9 c0       	rjmp	.+466    	; 0x23c <_exit>
+  66:	6d d0       	rcall	.+218    	; 0x142 <main>
+  68:	09 c1       	rjmp	.+530    	; 0x27c <_exit>
 
 0000006a <__bad_interrupt>:
   6a:	ca cf       	rjmp	.-108    	; 0x0 <__vectors>
@@ -149,342 +149,374 @@ void Port::write(char pin, char state){
   a4:	68 bb       	out	0x18, r22	; 24
   a6:	08 95       	ret
 
-000000a8 <_Z8sendDatac>:
+000000a8 <_ZN4Port12shift74ch595Ecccc>:
 	}
-	return 0;
-
+	else{
+		MCUCR &= ~(0x01 << PUD);
+	}
 }
-
-void sendData(char data){
-  a8:	0f 93       	push	r16
-  aa:	1f 93       	push	r17
-  ac:	cf 93       	push	r28
-  ae:	df 93       	push	r29
-  b0:	08 2f       	mov	r16, r24
+void Port::shift74ch595(char data, char DATAPIN, char SHPIN, char STPIN){
+  a8:	bf 92       	push	r11
+  aa:	cf 92       	push	r12
+  ac:	df 92       	push	r13
+  ae:	ef 92       	push	r14
+  b0:	ff 92       	push	r15
+  b2:	0f 93       	push	r16
+  b4:	1f 93       	push	r17
+  b6:	cf 93       	push	r28
+  b8:	df 93       	push	r29
+  ba:	7c 01       	movw	r14, r24
+  bc:	c6 2e       	mov	r12, r22
+  be:	b4 2e       	mov	r11, r20
+  c0:	12 2f       	mov	r17, r18
 	char i,ch;
-	port.write(STPIN,0);
-  b2:	40 e0       	ldi	r20, 0x00	; 0
-  b4:	61 e0       	ldi	r22, 0x01	; 1
-  b6:	8a e6       	ldi	r24, 0x6A	; 106
-  b8:	90 e0       	ldi	r25, 0x00	; 0
-  ba:	df df       	rcall	.-66     	; 0x7a <_ZN4Port5writeEcc>
-  bc:	c0 e0       	ldi	r28, 0x00	; 0
-  be:	d0 e0       	ldi	r29, 0x00	; 0
+	write(STPIN,0);
+  c2:	40 e0       	ldi	r20, 0x00	; 0
+  c4:	60 2f       	mov	r22, r16
+  c6:	d9 df       	rcall	.-78     	; 0x7a <_ZN4Port5writeEcc>
+  c8:	c0 e0       	ldi	r28, 0x00	; 0
+  ca:	d0 e0       	ldi	r29, 0x00	; 0
 
 	for(i=0;i<8;i++){
 		ch = data >> i;
-  c0:	10 e0       	ldi	r17, 0x00	; 0
-  c2:	a8 01       	movw	r20, r16
-  c4:	0c 2e       	mov	r0, r28
-  c6:	02 c0       	rjmp	.+4      	; 0xcc <_Z8sendDatac+0x24>
-  c8:	55 95       	asr	r21
-  ca:	47 95       	ror	r20
-  cc:	0a 94       	dec	r0
-  ce:	e2 f7       	brpl	.-8      	; 0xc8 <_Z8sendDatac+0x20>
+  cc:	d1 2c       	mov	r13, r1
+  ce:	c6 01       	movw	r24, r12
+  d0:	0c 2e       	mov	r0, r28
+  d2:	02 c0       	rjmp	.+4      	; 0xd8 <_ZN4Port12shift74ch595Ecccc+0x30>
+  d4:	95 95       	asr	r25
+  d6:	87 95       	ror	r24
+  d8:	0a 94       	dec	r0
+  da:	e2 f7       	brpl	.-8      	; 0xd4 <_ZN4Port12shift74ch595Ecccc+0x2c>
 		ch = ch & 0x01;
-  d0:	41 70       	andi	r20, 0x01	; 1
-		port.write(DATAPIN,ch);
-  d2:	60 e0       	ldi	r22, 0x00	; 0
-  d4:	8a e6       	ldi	r24, 0x6A	; 106
-  d6:	90 e0       	ldi	r25, 0x00	; 0
-  d8:	d0 df       	rcall	.-96     	; 0x7a <_ZN4Port5writeEcc>
+  dc:	48 2f       	mov	r20, r24
+  de:	41 70       	andi	r20, 0x01	; 1
+		write(DATAPIN,ch);
+  e0:	6b 2d       	mov	r22, r11
+  e2:	c7 01       	movw	r24, r14
+  e4:	ca df       	rcall	.-108    	; 0x7a <_ZN4Port5writeEcc>
 	#else
 		//round up by default
 		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
 	#endif
 
 	__builtin_avr_delay_cycles(__ticks_dc);
-  da:	8a e1       	ldi	r24, 0x1A	; 26
-  dc:	8a 95       	dec	r24
-  de:	f1 f7       	brne	.-4      	; 0xdc <_Z8sendDatac+0x34>
-  e0:	00 c0       	rjmp	.+0      	; 0xe2 <_Z8sendDatac+0x3a>
+  e6:	8a e1       	ldi	r24, 0x1A	; 26
+  e8:	8a 95       	dec	r24
+  ea:	f1 f7       	brne	.-4      	; 0xe8 <_ZN4Port12shift74ch595Ecccc+0x40>
+  ec:	00 c0       	rjmp	.+0      	; 0xee <_ZN4Port12shift74ch595Ecccc+0x46>
 		_delay_us(TIME);
-		port.write(SHPIN,1);
-  e2:	41 e0       	ldi	r20, 0x01	; 1
-  e4:	62 e0       	ldi	r22, 0x02	; 2
-  e6:	8a e6       	ldi	r24, 0x6A	; 106
-  e8:	90 e0       	ldi	r25, 0x00	; 0
-  ea:	c7 df       	rcall	.-114    	; 0x7a <_ZN4Port5writeEcc>
-  ec:	8a e1       	ldi	r24, 0x1A	; 26
-  ee:	8a 95       	dec	r24
-  f0:	f1 f7       	brne	.-4      	; 0xee <_Z8sendDatac+0x46>
-  f2:	00 c0       	rjmp	.+0      	; 0xf4 <_Z8sendDatac+0x4c>
+		write(SHPIN,1);
+  ee:	41 e0       	ldi	r20, 0x01	; 1
+  f0:	61 2f       	mov	r22, r17
+  f2:	c7 01       	movw	r24, r14
+  f4:	c2 df       	rcall	.-124    	; 0x7a <_ZN4Port5writeEcc>
+  f6:	2a e1       	ldi	r18, 0x1A	; 26
+  f8:	2a 95       	dec	r18
+  fa:	f1 f7       	brne	.-4      	; 0xf8 <_ZN4Port12shift74ch595Ecccc+0x50>
+  fc:	00 c0       	rjmp	.+0      	; 0xfe <_ZN4Port12shift74ch595Ecccc+0x56>
 		_delay_us(TIME);
-		port.write(SHPIN,0);
-  f4:	40 e0       	ldi	r20, 0x00	; 0
-  f6:	62 e0       	ldi	r22, 0x02	; 2
-  f8:	8a e6       	ldi	r24, 0x6A	; 106
-  fa:	90 e0       	ldi	r25, 0x00	; 0
-  fc:	be df       	rcall	.-132    	; 0x7a <_ZN4Port5writeEcc>
-  fe:	8a e1       	ldi	r24, 0x1A	; 26
- 100:	8a 95       	dec	r24
- 102:	f1 f7       	brne	.-4      	; 0x100 <_Z8sendDatac+0x58>
- 104:	00 c0       	rjmp	.+0      	; 0x106 <_Z8sendDatac+0x5e>
- 106:	21 96       	adiw	r28, 0x01	; 1
-
-void sendData(char data){
+		write(SHPIN,0);
+  fe:	40 e0       	ldi	r20, 0x00	; 0
+ 100:	61 2f       	mov	r22, r17
+ 102:	c7 01       	movw	r24, r14
+ 104:	ba df       	rcall	.-140    	; 0x7a <_ZN4Port5writeEcc>
+ 106:	8a e1       	ldi	r24, 0x1A	; 26
+ 108:	8a 95       	dec	r24
+ 10a:	f1 f7       	brne	.-4      	; 0x108 <_ZN4Port12shift74ch595Ecccc+0x60>
+ 10c:	00 c0       	rjmp	.+0      	; 0x10e <_ZN4Port12shift74ch595Ecccc+0x66>
+ 10e:	21 96       	adiw	r28, 0x01	; 1
+}
+void Port::shift74ch595(char data, char DATAPIN, char SHPIN, char STPIN){
 	char i,ch;
-	port.write(STPIN,0);
+	write(STPIN,0);
 
 	for(i=0;i<8;i++){
- 108:	c8 30       	cpi	r28, 0x08	; 8
- 10a:	d1 05       	cpc	r29, r1
- 10c:	d1 f6       	brne	.-76     	; 0xc2 <_Z8sendDatac+0x1a>
+ 110:	c8 30       	cpi	r28, 0x08	; 8
+ 112:	d1 05       	cpc	r29, r1
+ 114:	e1 f6       	brne	.-72     	; 0xce <_ZN4Port12shift74ch595Ecccc+0x26>
 		_delay_us(TIME);
-		port.write(SHPIN,0);
+		write(SHPIN,0);
 		_delay_us(TIME);
 	}
 	
-	port.write(STPIN,1);
- 10e:	41 e0       	ldi	r20, 0x01	; 1
- 110:	61 e0       	ldi	r22, 0x01	; 1
- 112:	8a e6       	ldi	r24, 0x6A	; 106
- 114:	90 e0       	ldi	r25, 0x00	; 0
- 116:	b1 df       	rcall	.-158    	; 0x7a <_ZN4Port5writeEcc>
- 118:	8a e1       	ldi	r24, 0x1A	; 26
- 11a:	8a 95       	dec	r24
- 11c:	f1 f7       	brne	.-4      	; 0x11a <_Z8sendDatac+0x72>
- 11e:	00 c0       	rjmp	.+0      	; 0x120 <_Z8sendDatac+0x78>
+	write(STPIN,1);
+ 116:	41 e0       	ldi	r20, 0x01	; 1
+ 118:	60 2f       	mov	r22, r16
+ 11a:	c7 01       	movw	r24, r14
+ 11c:	ae df       	rcall	.-164    	; 0x7a <_ZN4Port5writeEcc>
+ 11e:	2a e1       	ldi	r18, 0x1A	; 26
+ 120:	2a 95       	dec	r18
+ 122:	f1 f7       	brne	.-4      	; 0x120 <_ZN4Port12shift74ch595Ecccc+0x78>
+ 124:	00 c0       	rjmp	.+0      	; 0x126 <_ZN4Port12shift74ch595Ecccc+0x7e>
 	_delay_us(TIME);
-	port.write(STPIN,0);
- 120:	40 e0       	ldi	r20, 0x00	; 0
- 122:	61 e0       	ldi	r22, 0x01	; 1
- 124:	8a e6       	ldi	r24, 0x6A	; 106
- 126:	90 e0       	ldi	r25, 0x00	; 0
- 128:	a8 df       	rcall	.-176    	; 0x7a <_ZN4Port5writeEcc>
+	write(STPIN,0);	
+ 126:	40 e0       	ldi	r20, 0x00	; 0
+ 128:	60 2f       	mov	r22, r16
+ 12a:	c7 01       	movw	r24, r14
+ 12c:	a6 df       	rcall	.-180    	; 0x7a <_ZN4Port5writeEcc>
 }
- 12a:	df 91       	pop	r29
- 12c:	cf 91       	pop	r28
- 12e:	1f 91       	pop	r17
- 130:	0f 91       	pop	r16
- 132:	08 95       	ret
+ 12e:	df 91       	pop	r29
+ 130:	cf 91       	pop	r28
+ 132:	1f 91       	pop	r17
+ 134:	0f 91       	pop	r16
+ 136:	ff 90       	pop	r15
+ 138:	ef 90       	pop	r14
+ 13a:	df 90       	pop	r13
+ 13c:	cf 90       	pop	r12
+ 13e:	bf 90       	pop	r11
+ 140:	08 95       	ret
 
-00000134 <main>:
+00000142 <main>:
 #define LEDPIN PB4
 #define SWPIN PB3
 
 Port port;
 int main(void)
 {
- 134:	cf 93       	push	r28
- 136:	df 93       	push	r29
- 138:	cd b7       	in	r28, 0x3d	; 61
- 13a:	de b7       	in	r29, 0x3e	; 62
- 13c:	2a 97       	sbiw	r28, 0x0a	; 10
- 13e:	0f b6       	in	r0, 0x3f	; 63
- 140:	f8 94       	cli
- 142:	de bf       	out	0x3e, r29	; 62
- 144:	0f be       	out	0x3f, r0	; 63
- 146:	cd bf       	out	0x3d, r28	; 61
+ 142:	cf 93       	push	r28
+ 144:	df 93       	push	r29
+ 146:	cd b7       	in	r28, 0x3d	; 61
+ 148:	de b7       	in	r29, 0x3e	; 62
+ 14a:	2a 97       	sbiw	r28, 0x0a	; 10
+ 14c:	0f b6       	in	r0, 0x3f	; 63
+ 14e:	f8 94       	cli
+ 150:	de bf       	out	0x3e, r29	; 62
+ 152:	0f be       	out	0x3f, r0	; 63
+ 154:	cd bf       	out	0x3d, r28	; 61
 	
 
 	char display[10] = {n0,n1,n2,n3,n4,n5,n6,n7,n8,n9};
- 148:	8a e0       	ldi	r24, 0x0A	; 10
- 14a:	e0 e6       	ldi	r30, 0x60	; 96
- 14c:	f0 e0       	ldi	r31, 0x00	; 0
- 14e:	de 01       	movw	r26, r28
- 150:	11 96       	adiw	r26, 0x01	; 1
- 152:	01 90       	ld	r0, Z+
- 154:	0d 92       	st	X+, r0
- 156:	8a 95       	dec	r24
- 158:	e1 f7       	brne	.-8      	; 0x152 <main+0x1e>
+ 156:	8a e0       	ldi	r24, 0x0A	; 10
+ 158:	e0 e6       	ldi	r30, 0x60	; 96
+ 15a:	f0 e0       	ldi	r31, 0x00	; 0
+ 15c:	de 01       	movw	r26, r28
+ 15e:	11 96       	adiw	r26, 0x01	; 1
+ 160:	01 90       	ld	r0, Z+
+ 162:	0d 92       	st	X+, r0
+ 164:	8a 95       	dec	r24
+ 166:	e1 f7       	brne	.-8      	; 0x160 <main+0x1e>
 
 void Port::setMode(char pin, char mode){
 	//Mode 1 -> output
 	//Mode 0 -> input
 	if( (pin>=0) && (pin <= 5) && ((mode==0)||(mode==1))){
 		DDRB = (DDRB & ~(0x01 << pin)) | (mode << pin); 
- 15a:	b8 9a       	sbi	0x17, 0	; 23
- 15c:	ba 9a       	sbi	0x17, 2	; 23
- 15e:	b9 9a       	sbi	0x17, 1	; 23
- 160:	bc 9a       	sbi	0x17, 4	; 23
+ 168:	b8 9a       	sbi	0x17, 0	; 23
+ 16a:	ba 9a       	sbi	0x17, 2	; 23
+ 16c:	b9 9a       	sbi	0x17, 1	; 23
+ 16e:	bc 9a       	sbi	0x17, 4	; 23
 		
 		
 		
 		
 		
-		sendData(display[j]);
- 162:	89 81       	ldd	r24, Y+1	; 0x01
- 164:	a1 df       	rcall	.-190    	; 0xa8 <_Z8sendDatac>
-		sendData(display[i]);
- 166:	89 81       	ldd	r24, Y+1	; 0x01
- 168:	9f df       	rcall	.-194    	; 0xa8 <_Z8sendDatac>
+		port.shift74ch595(display[j],DATAPIN,SHPIN,STPIN);
+ 170:	01 e0       	ldi	r16, 0x01	; 1
+ 172:	22 e0       	ldi	r18, 0x02	; 2
+ 174:	40 e0       	ldi	r20, 0x00	; 0
+ 176:	6a 85       	ldd	r22, Y+10	; 0x0a
+ 178:	8a e6       	ldi	r24, 0x6A	; 106
+ 17a:	90 e0       	ldi	r25, 0x00	; 0
+ 17c:	95 df       	rcall	.-214    	; 0xa8 <_ZN4Port12shift74ch595Ecccc>
+		port.shift74ch595(display[i],DATAPIN,SHPIN,STPIN);
+ 17e:	22 e0       	ldi	r18, 0x02	; 2
+ 180:	40 e0       	ldi	r20, 0x00	; 0
+ 182:	6a 85       	ldd	r22, Y+10	; 0x0a
+ 184:	8a e6       	ldi	r24, 0x6A	; 106
+ 186:	90 e0       	ldi	r25, 0x00	; 0
+ 188:	8f df       	rcall	.-226    	; 0xa8 <_ZN4Port12shift74ch595Ecccc>
 	#else
 		//round up by default
 		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
 	#endif
 
 	__builtin_avr_delay_cycles(__ticks_dc);
- 16a:	2f ef       	ldi	r18, 0xFF	; 255
- 16c:	82 e5       	ldi	r24, 0x52	; 82
- 16e:	97 e0       	ldi	r25, 0x07	; 7
- 170:	21 50       	subi	r18, 0x01	; 1
- 172:	80 40       	sbci	r24, 0x00	; 0
- 174:	90 40       	sbci	r25, 0x00	; 0
- 176:	e1 f7       	brne	.-8      	; 0x170 <main+0x3c>
- 178:	00 c0       	rjmp	.+0      	; 0x17a <main+0x46>
- 17a:	00 00       	nop
-		
+ 18a:	2f ef       	ldi	r18, 0xFF	; 255
+ 18c:	82 e5       	ldi	r24, 0x52	; 82
+ 18e:	97 e0       	ldi	r25, 0x07	; 7
+ 190:	21 50       	subi	r18, 0x01	; 1
+ 192:	80 40       	sbci	r24, 0x00	; 0
+ 194:	90 40       	sbci	r25, 0x00	; 0
+ 196:	e1 f7       	brne	.-8      	; 0x190 <main+0x4e>
+ 198:	00 c0       	rjmp	.+0      	; 0x19a <main+0x58>
+ 19a:	00 00       	nop
+	
 	
 		_delay_ms(300);
 
-		n++;
- 17c:	01 e0       	ldi	r16, 0x01	; 1
- 17e:	10 e0       	ldi	r17, 0x00	; 0
+		n--;
+ 19c:	0f 2e       	mov	r0, r31
+ 19e:	f2 e6       	ldi	r31, 0x62	; 98
+ 1a0:	ef 2e       	mov	r14, r31
+ 1a2:	f1 2c       	mov	r15, r1
+ 1a4:	f0 2d       	mov	r31, r0
 	
-	int n=0,i=0,j=0;
+	int n=99,i=0,j=0;
 	char ch;
 	while(1){
 		i = n/10;
 		j = n%10;
- 180:	0f 2e       	mov	r0, r31
- 182:	fa e0       	ldi	r31, 0x0A	; 10
- 184:	cf 2e       	mov	r12, r31
- 186:	d1 2c       	mov	r13, r1
- 188:	f0 2d       	mov	r31, r0
-		
+ 1a6:	0f 2e       	mov	r0, r31
+ 1a8:	fa e0       	ldi	r31, 0x0A	; 10
+ 1aa:	af 2e       	mov	r10, r31
+ 1ac:	b1 2c       	mov	r11, r1
+ 1ae:	f0 2d       	mov	r31, r0
+	
 	
 		_delay_ms(300);
 
-		n++;
-		if(n>99) n=0;
- 18a:	a1 2c       	mov	r10, r1
- 18c:	b1 2c       	mov	r11, r1
- 18e:	02 c0       	rjmp	.+4      	; 0x194 <main+0x60>
- 190:	0a 2d       	mov	r16, r10
- 192:	1b 2d       	mov	r17, r11
+		n--;
+		if(n<=0) n=99;
+ 1b0:	0f 2e       	mov	r0, r31
+ 1b2:	f3 e6       	ldi	r31, 0x63	; 99
+ 1b4:	9f 2e       	mov	r9, r31
+ 1b6:	f0 2d       	mov	r31, r0
+ 1b8:	10 e0       	ldi	r17, 0x00	; 0
+ 1ba:	02 c0       	rjmp	.+4      	; 0x1c0 <main+0x7e>
+ 1bc:	e9 2c       	mov	r14, r9
+ 1be:	f1 2e       	mov	r15, r17
 	
-	int n=0,i=0,j=0;
+	int n=99,i=0,j=0;
 	char ch;
 	while(1){
 		i = n/10;
 		j = n%10;
- 194:	c8 01       	movw	r24, r16
- 196:	b6 01       	movw	r22, r12
- 198:	24 d0       	rcall	.+72     	; 0x1e2 <__divmodhi4>
- 19a:	7b 01       	movw	r14, r22
+ 1c0:	c7 01       	movw	r24, r14
+ 1c2:	b5 01       	movw	r22, r10
+ 1c4:	2e d0       	rcall	.+92     	; 0x222 <__divmodhi4>
+ 1c6:	6b 01       	movw	r12, r22
 		
 		
 		
 		
 		
-		sendData(display[j]);
- 19c:	e1 e0       	ldi	r30, 0x01	; 1
- 19e:	f0 e0       	ldi	r31, 0x00	; 0
- 1a0:	ec 0f       	add	r30, r28
- 1a2:	fd 1f       	adc	r31, r29
- 1a4:	e8 0f       	add	r30, r24
- 1a6:	f9 1f       	adc	r31, r25
- 1a8:	80 81       	ld	r24, Z
- 1aa:	7e df       	rcall	.-260    	; 0xa8 <_Z8sendDatac>
-		sendData(display[i]);
- 1ac:	e1 e0       	ldi	r30, 0x01	; 1
- 1ae:	f0 e0       	ldi	r31, 0x00	; 0
- 1b0:	ec 0f       	add	r30, r28
- 1b2:	fd 1f       	adc	r31, r29
- 1b4:	ee 0d       	add	r30, r14
- 1b6:	ff 1d       	adc	r31, r15
- 1b8:	80 81       	ld	r24, Z
- 1ba:	76 df       	rcall	.-276    	; 0xa8 <_Z8sendDatac>
- 1bc:	2f ef       	ldi	r18, 0xFF	; 255
- 1be:	82 e5       	ldi	r24, 0x52	; 82
- 1c0:	97 e0       	ldi	r25, 0x07	; 7
- 1c2:	21 50       	subi	r18, 0x01	; 1
- 1c4:	80 40       	sbci	r24, 0x00	; 0
- 1c6:	90 40       	sbci	r25, 0x00	; 0
- 1c8:	e1 f7       	brne	.-8      	; 0x1c2 <main+0x8e>
- 1ca:	00 c0       	rjmp	.+0      	; 0x1cc <main+0x98>
- 1cc:	00 00       	nop
-		
+		port.shift74ch595(display[j],DATAPIN,SHPIN,STPIN);
+ 1c8:	e1 e0       	ldi	r30, 0x01	; 1
+ 1ca:	f0 e0       	ldi	r31, 0x00	; 0
+ 1cc:	ec 0f       	add	r30, r28
+ 1ce:	fd 1f       	adc	r31, r29
+ 1d0:	e8 0f       	add	r30, r24
+ 1d2:	f9 1f       	adc	r31, r25
+ 1d4:	01 e0       	ldi	r16, 0x01	; 1
+ 1d6:	22 e0       	ldi	r18, 0x02	; 2
+ 1d8:	40 e0       	ldi	r20, 0x00	; 0
+ 1da:	60 81       	ld	r22, Z
+ 1dc:	8a e6       	ldi	r24, 0x6A	; 106
+ 1de:	90 e0       	ldi	r25, 0x00	; 0
+ 1e0:	63 df       	rcall	.-314    	; 0xa8 <_ZN4Port12shift74ch595Ecccc>
+		port.shift74ch595(display[i],DATAPIN,SHPIN,STPIN);
+ 1e2:	e1 e0       	ldi	r30, 0x01	; 1
+ 1e4:	f0 e0       	ldi	r31, 0x00	; 0
+ 1e6:	ec 0f       	add	r30, r28
+ 1e8:	fd 1f       	adc	r31, r29
+ 1ea:	ec 0d       	add	r30, r12
+ 1ec:	fd 1d       	adc	r31, r13
+ 1ee:	22 e0       	ldi	r18, 0x02	; 2
+ 1f0:	40 e0       	ldi	r20, 0x00	; 0
+ 1f2:	60 81       	ld	r22, Z
+ 1f4:	8a e6       	ldi	r24, 0x6A	; 106
+ 1f6:	90 e0       	ldi	r25, 0x00	; 0
+ 1f8:	57 df       	rcall	.-338    	; 0xa8 <_ZN4Port12shift74ch595Ecccc>
+ 1fa:	2f ef       	ldi	r18, 0xFF	; 255
+ 1fc:	82 e5       	ldi	r24, 0x52	; 82
+ 1fe:	97 e0       	ldi	r25, 0x07	; 7
+ 200:	21 50       	subi	r18, 0x01	; 1
+ 202:	80 40       	sbci	r24, 0x00	; 0
+ 204:	90 40       	sbci	r25, 0x00	; 0
+ 206:	e1 f7       	brne	.-8      	; 0x200 <main+0xbe>
+ 208:	00 c0       	rjmp	.+0      	; 0x20a <main+0xc8>
+ 20a:	00 00       	nop
+	
 	
 		_delay_ms(300);
 
-		n++;
- 1ce:	0f 5f       	subi	r16, 0xFF	; 255
- 1d0:	1f 4f       	sbci	r17, 0xFF	; 255
-		if(n>99) n=0;
- 1d2:	04 36       	cpi	r16, 0x64	; 100
- 1d4:	11 05       	cpc	r17, r1
- 1d6:	e4 f6       	brge	.-72     	; 0x190 <main+0x5c>
- 1d8:	dd cf       	rjmp	.-70     	; 0x194 <main+0x60>
+		n--;
+ 20c:	21 e0       	ldi	r18, 0x01	; 1
+ 20e:	e2 1a       	sub	r14, r18
+ 210:	f1 08       	sbc	r15, r1
+		if(n<=0) n=99;
+ 212:	1e 14       	cp	r1, r14
+ 214:	1f 04       	cpc	r1, r15
+ 216:	a4 f2       	brlt	.-88     	; 0x1c0 <main+0x7e>
+ 218:	d1 cf       	rjmp	.-94     	; 0x1bc <main+0x7a>
 
-000001da <_GLOBAL__sub_I__ZN4PortC2Ev>:
+0000021a <_GLOBAL__sub_I__ZN4PortC2Ev>:
 #define SHPIN PB2
 #define STPIN PB1
 #define LEDPIN PB4
 #define SWPIN PB3
 
 Port port;
- 1da:	8a e6       	ldi	r24, 0x6A	; 106
- 1dc:	90 e0       	ldi	r25, 0x00	; 0
- 1de:	46 df       	rcall	.-372    	; 0x6c <_ZN4PortC1Ev>
- 1e0:	08 95       	ret
+ 21a:	8a e6       	ldi	r24, 0x6A	; 106
+ 21c:	90 e0       	ldi	r25, 0x00	; 0
+ 21e:	26 df       	rcall	.-436    	; 0x6c <_ZN4PortC1Ev>
+ 220:	08 95       	ret
 
-000001e2 <__divmodhi4>:
- 1e2:	97 fb       	bst	r25, 7
- 1e4:	07 2e       	mov	r0, r23
- 1e6:	16 f4       	brtc	.+4      	; 0x1ec <__divmodhi4+0xa>
- 1e8:	00 94       	com	r0
- 1ea:	06 d0       	rcall	.+12     	; 0x1f8 <__divmodhi4_neg1>
- 1ec:	77 fd       	sbrc	r23, 7
- 1ee:	08 d0       	rcall	.+16     	; 0x200 <__divmodhi4_neg2>
- 1f0:	0b d0       	rcall	.+22     	; 0x208 <__udivmodhi4>
- 1f2:	07 fc       	sbrc	r0, 7
- 1f4:	05 d0       	rcall	.+10     	; 0x200 <__divmodhi4_neg2>
- 1f6:	3e f4       	brtc	.+14     	; 0x206 <__divmodhi4_exit>
+00000222 <__divmodhi4>:
+ 222:	97 fb       	bst	r25, 7
+ 224:	07 2e       	mov	r0, r23
+ 226:	16 f4       	brtc	.+4      	; 0x22c <__divmodhi4+0xa>
+ 228:	00 94       	com	r0
+ 22a:	06 d0       	rcall	.+12     	; 0x238 <__divmodhi4_neg1>
+ 22c:	77 fd       	sbrc	r23, 7
+ 22e:	08 d0       	rcall	.+16     	; 0x240 <__divmodhi4_neg2>
+ 230:	0b d0       	rcall	.+22     	; 0x248 <__udivmodhi4>
+ 232:	07 fc       	sbrc	r0, 7
+ 234:	05 d0       	rcall	.+10     	; 0x240 <__divmodhi4_neg2>
+ 236:	3e f4       	brtc	.+14     	; 0x246 <__divmodhi4_exit>
 
-000001f8 <__divmodhi4_neg1>:
- 1f8:	90 95       	com	r25
- 1fa:	81 95       	neg	r24
- 1fc:	9f 4f       	sbci	r25, 0xFF	; 255
- 1fe:	08 95       	ret
+00000238 <__divmodhi4_neg1>:
+ 238:	90 95       	com	r25
+ 23a:	81 95       	neg	r24
+ 23c:	9f 4f       	sbci	r25, 0xFF	; 255
+ 23e:	08 95       	ret
 
-00000200 <__divmodhi4_neg2>:
- 200:	70 95       	com	r23
- 202:	61 95       	neg	r22
- 204:	7f 4f       	sbci	r23, 0xFF	; 255
+00000240 <__divmodhi4_neg2>:
+ 240:	70 95       	com	r23
+ 242:	61 95       	neg	r22
+ 244:	7f 4f       	sbci	r23, 0xFF	; 255
 
-00000206 <__divmodhi4_exit>:
- 206:	08 95       	ret
+00000246 <__divmodhi4_exit>:
+ 246:	08 95       	ret
 
-00000208 <__udivmodhi4>:
- 208:	aa 1b       	sub	r26, r26
- 20a:	bb 1b       	sub	r27, r27
- 20c:	51 e1       	ldi	r21, 0x11	; 17
- 20e:	07 c0       	rjmp	.+14     	; 0x21e <__udivmodhi4_ep>
+00000248 <__udivmodhi4>:
+ 248:	aa 1b       	sub	r26, r26
+ 24a:	bb 1b       	sub	r27, r27
+ 24c:	51 e1       	ldi	r21, 0x11	; 17
+ 24e:	07 c0       	rjmp	.+14     	; 0x25e <__udivmodhi4_ep>
 
-00000210 <__udivmodhi4_loop>:
- 210:	aa 1f       	adc	r26, r26
- 212:	bb 1f       	adc	r27, r27
- 214:	a6 17       	cp	r26, r22
- 216:	b7 07       	cpc	r27, r23
- 218:	10 f0       	brcs	.+4      	; 0x21e <__udivmodhi4_ep>
- 21a:	a6 1b       	sub	r26, r22
- 21c:	b7 0b       	sbc	r27, r23
+00000250 <__udivmodhi4_loop>:
+ 250:	aa 1f       	adc	r26, r26
+ 252:	bb 1f       	adc	r27, r27
+ 254:	a6 17       	cp	r26, r22
+ 256:	b7 07       	cpc	r27, r23
+ 258:	10 f0       	brcs	.+4      	; 0x25e <__udivmodhi4_ep>
+ 25a:	a6 1b       	sub	r26, r22
+ 25c:	b7 0b       	sbc	r27, r23
 
-0000021e <__udivmodhi4_ep>:
- 21e:	88 1f       	adc	r24, r24
- 220:	99 1f       	adc	r25, r25
- 222:	5a 95       	dec	r21
- 224:	a9 f7       	brne	.-22     	; 0x210 <__udivmodhi4_loop>
- 226:	80 95       	com	r24
- 228:	90 95       	com	r25
- 22a:	bc 01       	movw	r22, r24
- 22c:	cd 01       	movw	r24, r26
- 22e:	08 95       	ret
+0000025e <__udivmodhi4_ep>:
+ 25e:	88 1f       	adc	r24, r24
+ 260:	99 1f       	adc	r25, r25
+ 262:	5a 95       	dec	r21
+ 264:	a9 f7       	brne	.-22     	; 0x250 <__udivmodhi4_loop>
+ 266:	80 95       	com	r24
+ 268:	90 95       	com	r25
+ 26a:	bc 01       	movw	r22, r24
+ 26c:	cd 01       	movw	r24, r26
+ 26e:	08 95       	ret
 
-00000230 <__tablejump2__>:
- 230:	ee 0f       	add	r30, r30
- 232:	ff 1f       	adc	r31, r31
+00000270 <__tablejump2__>:
+ 270:	ee 0f       	add	r30, r30
+ 272:	ff 1f       	adc	r31, r31
 
-00000234 <__tablejump__>:
- 234:	05 90       	lpm	r0, Z+
- 236:	f4 91       	lpm	r31, Z
- 238:	e0 2d       	mov	r30, r0
- 23a:	09 94       	ijmp
+00000274 <__tablejump__>:
+ 274:	05 90       	lpm	r0, Z+
+ 276:	f4 91       	lpm	r31, Z
+ 278:	e0 2d       	mov	r30, r0
+ 27a:	09 94       	ijmp
 
-0000023c <_exit>:
- 23c:	f8 94       	cli
+0000027c <_exit>:
+ 27c:	f8 94       	cli
 
-0000023e <__stop_program>:
- 23e:	ff cf       	rjmp	.-2      	; 0x23e <__stop_program>
+0000027e <__stop_program>:
+ 27e:	ff cf       	rjmp	.-2      	; 0x27e <__stop_program>
