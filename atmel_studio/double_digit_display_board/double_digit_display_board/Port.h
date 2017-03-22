@@ -1,6 +1,3 @@
-#include <avr/io.h>
-#include <util/delay.h>
-
 #define IN 0
 #define OUT 1
 using namespace std;

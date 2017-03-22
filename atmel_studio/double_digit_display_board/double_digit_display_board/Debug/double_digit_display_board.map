@@ -1,7 +1,7 @@
 Archive member included because of file (symbol)
 
-c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25\libgcc.a(_divmodhi4.o)
-                              double_digit_display_board.o (__divmodhi4)
+c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25\libgcc.a(_udivmodqi4.o)
+                              double_digit_display_board.o (__udivmodqi4)
 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25\libgcc.a(_exit.o)
                               c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr25/crttn85.o (exit)
 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25\libgcc.a(_copy_data.o)
@@ -10,8 +10,6 @@ c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-t
                               double_digit_display_board.o (__do_clear_bss)
 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25\libgcc.a(_ctors.o)
                               double_digit_display_board.o (__do_global_ctors)
-c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25\libgcc.a(_udivmodhi4.o)
-                              c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25\libgcc.a(_divmodhi4.o) (__udivmodhi4)
 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25\libgcc.a(_tablejump.o)
                               c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25\libgcc.a(_ctors.o) (__tablejump__)
 
@@ -24,26 +22,24 @@ Discarded input sections
  .bss           0x00000000        0x0 double_digit_display_board.o
  .text._ZN4Port7setModeEcc
                 0x00000000       0x36 double_digit_display_board.o
- .text._ZN4Port12changePullUpEcc
-                0x00000000       0x42 double_digit_display_board.o
  .text._ZN4Port4readEc
                 0x00000000       0x28 double_digit_display_board.o
  .text._ZN4Port18changeGlobalPullupEc
                 0x00000000       0x14 double_digit_display_board.o
- .text          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25\libgcc.a(_divmodhi4.o)
- .data          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25\libgcc.a(_divmodhi4.o)
- .bss           0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25\libgcc.a(_divmodhi4.o)
+ .text          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25\libgcc.a(_udivmodqi4.o)
+ .data          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25\libgcc.a(_udivmodqi4.o)
+ .bss           0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25\libgcc.a(_udivmodqi4.o)
  .text.libgcc.mul
-                0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25\libgcc.a(_divmodhi4.o)
- .text.libgcc   0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25\libgcc.a(_divmodhi4.o)
+                0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25\libgcc.a(_udivmodqi4.o)
+ .text.libgcc   0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25\libgcc.a(_udivmodqi4.o)
  .text.libgcc.prologue
-                0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25\libgcc.a(_divmodhi4.o)
+                0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25\libgcc.a(_udivmodqi4.o)
  .text.libgcc.builtins
-                0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25\libgcc.a(_divmodhi4.o)
+                0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25\libgcc.a(_udivmodqi4.o)
  .text.libgcc.fmul
-                0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25\libgcc.a(_divmodhi4.o)
+                0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25\libgcc.a(_udivmodqi4.o)
  .text.libgcc.fixed
-                0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25\libgcc.a(_divmodhi4.o)
+                0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25\libgcc.a(_udivmodqi4.o)
  .text          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25\libgcc.a(_exit.o)
  .data          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25\libgcc.a(_exit.o)
  .bss           0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25\libgcc.a(_exit.o)
@@ -108,20 +104,6 @@ Discarded input sections
                 0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25\libgcc.a(_ctors.o)
  .text.libgcc.fixed
                 0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25\libgcc.a(_ctors.o)
- .text          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25\libgcc.a(_udivmodhi4.o)
- .data          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25\libgcc.a(_udivmodhi4.o)
- .bss           0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25\libgcc.a(_udivmodhi4.o)
- .text.libgcc.mul
-                0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25\libgcc.a(_udivmodhi4.o)
- .text.libgcc   0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25\libgcc.a(_udivmodhi4.o)
- .text.libgcc.prologue
-                0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25\libgcc.a(_udivmodhi4.o)
- .text.libgcc.builtins
-                0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25\libgcc.a(_udivmodhi4.o)
- .text.libgcc.fmul
-                0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25\libgcc.a(_udivmodhi4.o)
- .text.libgcc.fixed
-                0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25\libgcc.a(_udivmodhi4.o)
  .text          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25\libgcc.a(_tablejump.o)
  .data          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25\libgcc.a(_tablejump.o)
  .bss           0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25\libgcc.a(_tablejump.o)
@@ -255,7 +237,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0x280
+.text           0x00000000      0x33e
  *(.vectors)
  .vectors       0x00000000       0x1e c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr25/crttn85.o
                 0x00000000                __vector_default
@@ -326,7 +308,6 @@ END GROUP
                 0x0000006a                __vector_5
                 0x0000006a                __vector_4
                 0x0000006a                __vector_9
-                0x0000006a                __vector_2
                 0x0000006a                __vector_8
                 0x0000006a                __vector_14
                 0x0000006a                __vector_10
@@ -336,31 +317,46 @@ END GROUP
                 0x0000006c        0xe double_digit_display_board.o
                 0x0000006c                _ZN4PortC2Ev
                 0x0000006c                _ZN4PortC1Ev
+ .text._ZN4Port12changePullUpEcc
+                0x0000007a       0x42 double_digit_display_board.o
+                0x0000007a                _ZN4Port12changePullUpEcc
  .text._ZN4Port5writeEcc
-                0x0000007a       0x2e double_digit_display_board.o
-                0x0000007a                _ZN4Port5writeEcc
+                0x000000bc       0x2e double_digit_display_board.o
+                0x000000bc                _ZN4Port5writeEcc
  .text._ZN4Port12shift74ch595Ecccc
-                0x000000a8       0x9a double_digit_display_board.o
-                0x000000a8                _ZN4Port12shift74ch595Ecccc
- .text.main     0x00000142       0xd8 double_digit_display_board.o
-                0x00000142                main
+                0x000000ea       0x9a double_digit_display_board.o
+                0x000000ea                _ZN4Port12shift74ch595Ecccc
+ .text._ZN7DisplayC2Ev
+                0x00000184       0x68 double_digit_display_board.o
+                0x00000184                _ZN7DisplayC2Ev
+                0x00000184                _ZN7DisplayC1Ev
+ .text._ZN7Display12writeDisplayEv
+                0x000001ec       0x3e double_digit_display_board.o
+                0x000001ec                _ZN7Display12writeDisplayEv
+ .text._ZN7Display14interruptSetupEv
+                0x0000022a        0xc double_digit_display_board.o
+                0x0000022a                _ZN7Display14interruptSetupEv
+ .text._ZN7Display9interruptEv
+                0x00000236       0x42 double_digit_display_board.o
+                0x00000236                _ZN7Display9interruptEv
+ .text.main     0x00000278       0x4c double_digit_display_board.o
+                0x00000278                main
+ .text.__vector_2
+                0x000002c4       0x4a double_digit_display_board.o
+                0x000002c4                __vector_2
  .text._GLOBAL__sub_I__ZN4PortC2Ev
-                0x0000021a        0x8 double_digit_display_board.o
+                0x0000030e        0x8 double_digit_display_board.o
  .text.libgcc.div
-                0x00000222       0x26 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25\libgcc.a(_divmodhi4.o)
-                0x00000222                _div
-                0x00000222                __divmodhi4
- .text.libgcc.div
-                0x00000248       0x28 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25\libgcc.a(_udivmodhi4.o)
-                0x00000248                __udivmodhi4
- .text.libgcc   0x00000270        0xc c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25\libgcc.a(_tablejump.o)
-                0x00000270                __tablejump2__
-                0x00000274                __tablejump__
-                0x0000027c                . = ALIGN (0x2)
+                0x00000316       0x18 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25\libgcc.a(_udivmodqi4.o)
+                0x00000316                __udivmodqi4
+ .text.libgcc   0x0000032e        0xc c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25\libgcc.a(_tablejump.o)
+                0x0000032e                __tablejump2__
+                0x00000332                __tablejump__
+                0x0000033a                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x0000027c        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25\libgcc.a(_exit.o)
-                0x0000027c                _exit
-                0x0000027c                exit
+ .fini9         0x0000033a        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25\libgcc.a(_exit.o)
+                0x0000033a                _exit
+                0x0000033a                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -379,11 +375,11 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x0000027c        0x4 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25\libgcc.a(_exit.o)
+ .fini0         0x0000033a        0x4 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25\libgcc.a(_exit.o)
  *(.fini0)
-                0x00000280                _etext = .
+                0x0000033e                _etext = .
 
-.data           0x00800060        0xa load address 0x00000280
+.data           0x00800060        0xa load address 0x0000033e
                 0x00800060                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
@@ -395,23 +391,23 @@ END GROUP
                 0x0080006a                _edata = .
                 0x0080006a                PROVIDE (__data_end, .)
 
-.bss            0x0080006a        0x1
+.bss            0x0080006a        0xb
                 0x0080006a                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
- .bss.port      0x0080006a        0x1 double_digit_display_board.o
-                0x0080006a                port
+ .bss.display   0x0080006a        0xb double_digit_display_board.o
+                0x0080006a                display
  *(COMMON)
-                0x0080006b                PROVIDE (__bss_end, .)
-                0x00000280                __data_load_start = LOADADDR (.data)
-                0x0000028a                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x00800075                PROVIDE (__bss_end, .)
+                0x0000033e                __data_load_start = LOADADDR (.data)
+                0x00000348                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x0080006b        0x0
-                0x0080006b                PROVIDE (__noinit_start, .)
+.noinit         0x00800075        0x0
+                0x00800075                PROVIDE (__noinit_start, .)
  *(.noinit*)
-                0x0080006b                PROVIDE (__noinit_end, .)
-                0x0080006b                _end = .
-                0x0080006b                PROVIDE (__heap_start, .)
+                0x00800075                PROVIDE (__noinit_end, .)
+                0x00800075                _end = .
+                0x00800075                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
  *(.eeprom*)
@@ -470,38 +466,38 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x00000000       0x60
+.debug_aranges  0x00000000       0x88
  *(.debug_aranges)
  .debug_aranges
-                0x00000000       0x60 double_digit_display_board.o
+                0x00000000       0x88 double_digit_display_board.o
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000      0x911
+.debug_info     0x00000000      0xbba
  *(.debug_info .gnu.linkonce.wi.*)
- .debug_info    0x00000000      0x911 double_digit_display_board.o
+ .debug_info    0x00000000      0xbba double_digit_display_board.o
 
-.debug_abbrev   0x00000000      0x313
+.debug_abbrev   0x00000000      0x379
  *(.debug_abbrev)
- .debug_abbrev  0x00000000      0x313 double_digit_display_board.o
+ .debug_abbrev  0x00000000      0x379 double_digit_display_board.o
 
-.debug_line     0x00000000      0x280
+.debug_line     0x00000000      0x32a
  *(.debug_line .debug_line.* .debug_line_end)
- .debug_line    0x00000000      0x280 double_digit_display_board.o
+ .debug_line    0x00000000      0x32a double_digit_display_board.o
 
-.debug_frame    0x00000000       0xe4
+.debug_frame    0x00000000      0x1ac
  *(.debug_frame)
- .debug_frame   0x00000000       0xe4 double_digit_display_board.o
+ .debug_frame   0x00000000      0x1ac double_digit_display_board.o
 
-.debug_str      0x00000000      0x350
+.debug_str      0x00000000      0x3eb
  *(.debug_str)
- .debug_str     0x00000000      0x350 double_digit_display_board.o
-                                0x396 (size before relaxing)
+ .debug_str     0x00000000      0x3eb double_digit_display_board.o
+                                0x439 (size before relaxing)
 
-.debug_loc      0x00000000      0x46a
+.debug_loc      0x00000000      0x6e2
  *(.debug_loc)
- .debug_loc     0x00000000      0x46a double_digit_display_board.o
+ .debug_loc     0x00000000      0x6e2 double_digit_display_board.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -521,9 +517,9 @@ END GROUP
 .debug_pubtypes
  *(.debug_pubtypes)
 
-.debug_ranges   0x00000000       0x68
+.debug_ranges   0x00000000       0x90
  *(.debug_ranges)
- .debug_ranges  0x00000000       0x68 double_digit_display_board.o
+ .debug_ranges  0x00000000       0x90 double_digit_display_board.o
 
 .debug_macro
  *(.debug_macro)

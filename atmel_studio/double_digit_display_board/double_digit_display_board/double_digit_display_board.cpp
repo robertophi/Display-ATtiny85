@@ -7,12 +7,13 @@
 
 //Frequencia e intervalo do serial shifter
 #define F_CPU 8000000UL
-#define TIME 10
+#define TIME 1
 
 
 #include <avr/io.h>
 #include <util/delay.h>
-#include "Port.cpp"
+#include <avr/interrupt.h>
+
 
 
 
@@ -29,52 +30,33 @@
 #define n9 0b00111110
 
 
+const int DATAPIN = PB0;
+const int SHPIN = PB2;
+const int STPIN = PB1;
+const int LEDPIN = PB4;
+const int SWPIN = PB3;
 
+#include "Display.cpp"	
 
-void sendCommand(char cmd);
-void sendData(char cmd);
-
-#define DATAPIN PB0
-#define SHPIN PB2
-#define STPIN PB1
-#define LEDPIN PB4
-#define SWPIN PB3
-
-Port port;
+Display display;
 int main(void)
 {
-	
 
-	char display[10] = {n0,n1,n2,n3,n4,n5,n6,n7,n8,n9};
-		
+	display.Port::setMode(DATAPIN,OUT); //out pb0
+	display.Port::setMode(SHPIN,OUT); //out pb2
+	display.Port::setMode(STPIN,OUT); //out pb1
+	display.Port::setMode(SWPIN,IN);
+	display.Port::changePullUp(SWPIN,0);
+	display.Port::setMode(LEDPIN,OUT);
+	display.interruptSetup();
 
-	port.setMode(DATAPIN,OUT); //out pb0
-	port.setMode(SHPIN,OUT); //out pb2
-	port.setMode(STPIN,OUT); //out pb1
-	//port.setMode(SWPIN,IN); 
-	//port.changePullUp(SWPIN,0);
-	port.setMode(LEDPIN,OUT);
-	
-	
-	
-	int n=99,i=0,j=0;
-	char ch;
 	while(1){
-		i = n/10;
-		j = n%10;
-		
-		
-		
-		
-		
-		port.shift74ch595(display[j],DATAPIN,SHPIN,STPIN);
-		port.shift74ch595(display[i],DATAPIN,SHPIN,STPIN);
-	
-	
-		_delay_ms(300);
 
-		n--;
-		if(n<=0) n=99;
+		display.writeDisplay();
+		_delay_ms(500);
+		if(display.n<=0) display.n=100;
+		display.n--;
+		
 	
 	}
 	return 0;
@@ -83,3 +65,6 @@ int main(void)
 
 
 
+ISR(PCINT0_vect){
+	display.interrupt();	
+}
