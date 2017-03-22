@@ -14,11 +14,32 @@
 
 Display::Display():
     Port::Port() {
-        n = 99;
+        n = 15;
+		finish = 0;
+		Port::write(LEDPIN,0);
         char aux[10] = {n0,n1,n2,n3,n4,n5,n6,n7,n8,n9};
         for(int i=0;i<=9;i++){
             display[i] = aux[i];
         }
+}
+
+void Display::countdown(){
+	if(n != 0){
+		n--;
+	}
+	writeDisplay();
+	if((n==0) && (finish == 0)){
+		finish =1;
+		for(int i=0;i<=10;i++){
+			Port::write(LEDPIN,1);
+			_delay_ms(100);
+			Port::write(LEDPIN,0);
+			_delay_ms(100);
+		}
+	}
+	
+	
+
 }
 void Display::writeDisplay(){
     int i=0,j=0;
@@ -30,25 +51,32 @@ void Display::writeDisplay(){
 
 void Display::interruptSetup(){
 	GIMSK |=  (1<<PCIE);
-	//Habilita interruptção do EXT0
-	//Habilita interrupção por "pin change"
-	//Só existe uma interrupção externa comum - INT0
-	//Todos os pinos de PCINT[5:0] geram a mesma interrupção
-
 	PCMSK |= (1 << PCINT3);
-	//Habilita o pin0 como gerador da interrupção PCINT
-	//Poderiamos colocar os outros também, que iriam gerar apenas a mesma interrupção
 	sei();
-	//Enable Global Interrupt
 }
 void Display::interrupt(){
+	char speed=0;
+	if(finish == 1){
+		finish = 0;
+	}
 	while(Port::read(SWPIN)==0x01){
 		n++;
+		speed++;
 		if(n>99){
 			n=99;
 		}
 		writeDisplay();
-		_delay_ms(500);
+		if(speed<=3){
+			_delay_ms(500);
+		}
+		else if(speed <= 10){
+			_delay_ms(200);
+		}
+		else if(speed<=0xFF){
+			_delay_ms(100);
+		}
+		if(speed>20) speed = 20;
 	}
+
 
 }

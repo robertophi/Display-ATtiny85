@@ -52,11 +52,8 @@ int main(void)
 
 	while(1){
 
-		display.writeDisplay();
-		_delay_ms(500);
-		if(display.n<=0) display.n=100;
-		display.n--;
-		
+		display.countdown();
+		_delay_ms(500);	
 	
 	}
 	return 0;

@@ -3,29 +3,29 @@ double_digit_display_board.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .text         0000033e  00000000  00000000  00000094  2**1
+  0 .text         000003ee  00000000  00000000  00000094  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .data         0000000a  00800060  0000033e  000003d2  2**0
+  1 .data         0000000a  00800060  000003ee  00000482  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  2 .bss          0000000b  0080006a  0080006a  000003dc  2**0
+  2 .bss          0000000c  0080006a  0080006a  0000048c  2**0
                   ALLOC
-  3 .comment      00000030  00000000  00000000  000003dc  2**0
+  3 .comment      00000030  00000000  00000000  0000048c  2**0
                   CONTENTS, READONLY
-  4 .debug_aranges 00000088  00000000  00000000  0000040c  2**0
+  4 .debug_aranges 00000090  00000000  00000000  000004bc  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_info   00000bba  00000000  00000000  00000494  2**0
+  5 .debug_info   00000da1  00000000  00000000  0000054c  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_abbrev 00000379  00000000  00000000  0000104e  2**0
+  6 .debug_abbrev 00000399  00000000  00000000  000012ed  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_line   0000032a  00000000  00000000  000013c7  2**0
+  7 .debug_line   0000038b  00000000  00000000  00001686  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_frame  000001ac  00000000  00000000  000016f4  2**2
+  8 .debug_frame  000001dc  00000000  00000000  00001a14  2**2
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_str    000003eb  00000000  00000000  000018a0  2**0
+  9 .debug_str    0000041a  00000000  00000000  00001bf0  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_loc    000006e2  00000000  00000000  00001c8b  2**0
+ 10 .debug_loc    000008fb  00000000  00000000  0000200a  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_ranges 00000090  00000000  00000000  0000236d  2**0
+ 11 .debug_ranges 00000098  00000000  00000000  00002905  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -33,7 +33,7 @@ Disassembly of section .text:
 00000000 <__vectors>:
    0:	0f c0       	rjmp	.+30     	; 0x20 <__ctors_end>
    2:	33 c0       	rjmp	.+102    	; 0x6a <__bad_interrupt>
-   4:	5f c1       	rjmp	.+702    	; 0x2c4 <__vector_2>
+   4:	b7 c1       	rjmp	.+878    	; 0x374 <__vector_2>
    6:	31 c0       	rjmp	.+98     	; 0x6a <__bad_interrupt>
    8:	30 c0       	rjmp	.+96     	; 0x6a <__bad_interrupt>
    a:	2f c0       	rjmp	.+94     	; 0x6a <__bad_interrupt>
@@ -48,7 +48,7 @@ Disassembly of section .text:
   1c:	26 c0       	rjmp	.+76     	; 0x6a <__bad_interrupt>
 
 0000001e <__ctors_start>:
-  1e:	87 01       	movw	r16, r14
+  1e:	df 01       	movw	r26, r30
 
 00000020 <__ctors_end>:
   20:	11 24       	eor	r1, r1
@@ -62,7 +62,7 @@ Disassembly of section .text:
   2c:	10 e0       	ldi	r17, 0x00	; 0
   2e:	a0 e6       	ldi	r26, 0x60	; 96
   30:	b0 e0       	ldi	r27, 0x00	; 0
-  32:	ee e3       	ldi	r30, 0x3E	; 62
+  32:	ee ee       	ldi	r30, 0xEE	; 238
   34:	f3 e0       	ldi	r31, 0x03	; 3
   36:	02 c0       	rjmp	.+4      	; 0x3c <__do_copy_data+0x10>
   38:	05 90       	lpm	r0, Z+
@@ -81,7 +81,7 @@ Disassembly of section .text:
   4a:	1d 92       	st	X+, r1
 
 0000004c <.do_clear_bss_start>:
-  4c:	a5 37       	cpi	r26, 0x75	; 117
+  4c:	a6 37       	cpi	r26, 0x76	; 118
   4e:	b2 07       	cpc	r27, r18
   50:	e1 f7       	brne	.-8      	; 0x4a <.do_clear_bss_loop>
 
@@ -92,12 +92,12 @@ Disassembly of section .text:
   58:	03 c0       	rjmp	.+6      	; 0x60 <__do_global_ctors+0xe>
   5a:	22 97       	sbiw	r28, 0x02	; 2
   5c:	fe 01       	movw	r30, r28
-  5e:	69 d1       	rcall	.+722    	; 0x332 <__tablejump__>
+  5e:	c1 d1       	rcall	.+898    	; 0x3e2 <__tablejump__>
   60:	ce 31       	cpi	r28, 0x1E	; 30
   62:	d1 07       	cpc	r29, r17
   64:	d1 f7       	brne	.-12     	; 0x5a <__do_global_ctors+0x8>
-  66:	08 d1       	rcall	.+528    	; 0x278 <main>
-  68:	68 c1       	rjmp	.+720    	; 0x33a <_exit>
+  66:	6c d1       	rcall	.+728    	; 0x340 <main>
+  68:	c0 c1       	rjmp	.+896    	; 0x3ea <_exit>
 
 0000006a <__bad_interrupt>:
   6a:	ca cf       	rjmp	.-108    	; 0x0 <__vectors>
@@ -332,365 +332,481 @@ Display::Display():
  196:	de bf       	out	0x3e, r29	; 62
  198:	0f be       	out	0x3f, r0	; 63
  19a:	cd bf       	out	0x3d, r28	; 61
- 19c:	08 2f       	mov	r16, r24
- 19e:	19 2f       	mov	r17, r25
+ 19c:	8c 01       	movw	r16, r24
     Port::Port() {
- 1a0:	65 df       	rcall	.-310    	; 0x6c <_ZN4PortC1Ev>
-        n = 99;
- 1a2:	20 2f       	mov	r18, r16
- 1a4:	31 2f       	mov	r19, r17
- 1a6:	83 e6       	ldi	r24, 0x63	; 99
- 1a8:	d9 01       	movw	r26, r18
- 1aa:	8d 93       	st	X+, r24
- 1ac:	9d 01       	movw	r18, r26
+ 19e:	66 df       	rcall	.-308    	; 0x6c <_ZN4PortC1Ev>
+        n = 15;
+ 1a0:	8f e0       	ldi	r24, 0x0F	; 15
+ 1a2:	f8 01       	movw	r30, r16
+ 1a4:	80 83       	st	Z, r24
+		finish = 0;
+ 1a6:	13 86       	std	Z+11, r1	; 0x0b
+		Port::write(LEDPIN,0);
+ 1a8:	40 e0       	ldi	r20, 0x00	; 0
+ 1aa:	64 e0       	ldi	r22, 0x04	; 4
+ 1ac:	c8 01       	movw	r24, r16
+ 1ae:	86 df       	rcall	.-244    	; 0xbc <_ZN4Port5writeEcc>
         char aux[10] = {n0,n1,n2,n3,n4,n5,n6,n7,n8,n9};
- 1ae:	8a e0       	ldi	r24, 0x0A	; 10
- 1b0:	e0 e6       	ldi	r30, 0x60	; 96
- 1b2:	f0 e0       	ldi	r31, 0x00	; 0
- 1b4:	de 01       	movw	r26, r28
- 1b6:	11 96       	adiw	r26, 0x01	; 1
- 1b8:	01 90       	ld	r0, Z+
- 1ba:	0d 92       	st	X+, r0
- 1bc:	8a 95       	dec	r24
- 1be:	e1 f7       	brne	.-8      	; 0x1b8 <_ZN7DisplayC1Ev+0x34>
- 1c0:	fe 01       	movw	r30, r28
- 1c2:	31 96       	adiw	r30, 0x01	; 1
- 1c4:	ce 01       	movw	r24, r28
- 1c6:	0b 96       	adiw	r24, 0x0b	; 11
+ 1b0:	8a e0       	ldi	r24, 0x0A	; 10
+ 1b2:	e0 e6       	ldi	r30, 0x60	; 96
+ 1b4:	f0 e0       	ldi	r31, 0x00	; 0
+ 1b6:	de 01       	movw	r26, r28
+ 1b8:	11 96       	adiw	r26, 0x01	; 1
+ 1ba:	01 90       	ld	r0, Z+
+ 1bc:	0d 92       	st	X+, r0
+ 1be:	8a 95       	dec	r24
+ 1c0:	e1 f7       	brne	.-8      	; 0x1ba <_ZN7DisplayC1Ev+0x36>
+ 1c2:	fe 01       	movw	r30, r28
+ 1c4:	31 96       	adiw	r30, 0x01	; 1
+ 1c6:	d8 01       	movw	r26, r16
+ 1c8:	11 96       	adiw	r26, 0x01	; 1
+ 1ca:	ce 01       	movw	r24, r28
+ 1cc:	0b 96       	adiw	r24, 0x0b	; 11
         for(int i=0;i<=9;i++){
             display[i] = aux[i];
- 1c8:	41 91       	ld	r20, Z+
- 1ca:	d9 01       	movw	r26, r18
- 1cc:	4d 93       	st	X+, r20
- 1ce:	9d 01       	movw	r18, r26
-
-Display::Display():
+ 1ce:	21 91       	ld	r18, Z+
+ 1d0:	2d 93       	st	X+, r18
     Port::Port() {
-        n = 99;
+        n = 15;
+		finish = 0;
+		Port::write(LEDPIN,0);
         char aux[10] = {n0,n1,n2,n3,n4,n5,n6,n7,n8,n9};
         for(int i=0;i<=9;i++){
- 1d0:	e8 17       	cp	r30, r24
- 1d2:	f9 07       	cpc	r31, r25
- 1d4:	c9 f7       	brne	.-14     	; 0x1c8 <_ZN7DisplayC1Ev+0x44>
+ 1d2:	e8 17       	cp	r30, r24
+ 1d4:	f9 07       	cpc	r31, r25
+ 1d6:	d9 f7       	brne	.-10     	; 0x1ce <_ZN7DisplayC1Ev+0x4a>
             display[i] = aux[i];
         }
 }
- 1d6:	2a 96       	adiw	r28, 0x0a	; 10
- 1d8:	0f b6       	in	r0, 0x3f	; 63
- 1da:	f8 94       	cli
- 1dc:	de bf       	out	0x3e, r29	; 62
- 1de:	0f be       	out	0x3f, r0	; 63
- 1e0:	cd bf       	out	0x3d, r28	; 61
- 1e2:	df 91       	pop	r29
- 1e4:	cf 91       	pop	r28
- 1e6:	1f 91       	pop	r17
- 1e8:	0f 91       	pop	r16
- 1ea:	08 95       	ret
+ 1d8:	2a 96       	adiw	r28, 0x0a	; 10
+ 1da:	0f b6       	in	r0, 0x3f	; 63
+ 1dc:	f8 94       	cli
+ 1de:	de bf       	out	0x3e, r29	; 62
+ 1e0:	0f be       	out	0x3f, r0	; 63
+ 1e2:	cd bf       	out	0x3d, r28	; 61
+ 1e4:	df 91       	pop	r29
+ 1e6:	cf 91       	pop	r28
+ 1e8:	1f 91       	pop	r17
+ 1ea:	0f 91       	pop	r16
+ 1ec:	08 95       	ret
 
-000001ec <_ZN7Display12writeDisplayEv>:
-void Display::writeDisplay(){
- 1ec:	0f 93       	push	r16
- 1ee:	1f 93       	push	r17
- 1f0:	cf 93       	push	r28
- 1f2:	df 93       	push	r29
- 1f4:	ec 01       	movw	r28, r24
-    int i=0,j=0;
-	i = n/10;
- 1f6:	88 81       	ld	r24, Y
-	j= n%10;
- 1f8:	6a e0       	ldi	r22, 0x0A	; 10
- 1fa:	8d d0       	rcall	.+282    	; 0x316 <__udivmodqi4>
- 1fc:	18 2f       	mov	r17, r24
-	Port::shift74ch595(display[j],DATAPIN,SHPIN,STPIN);
- 1fe:	fe 01       	movw	r30, r28
- 200:	e9 0f       	add	r30, r25
- 202:	f1 1d       	adc	r31, r1
- 204:	01 e0       	ldi	r16, 0x01	; 1
- 206:	22 e0       	ldi	r18, 0x02	; 2
- 208:	40 e0       	ldi	r20, 0x00	; 0
- 20a:	61 81       	ldd	r22, Z+1	; 0x01
- 20c:	ce 01       	movw	r24, r28
- 20e:	6d df       	rcall	.-294    	; 0xea <_ZN4Port12shift74ch595Ecccc>
-	Port::shift74ch595(display[i],DATAPIN,SHPIN,STPIN);
- 210:	fe 01       	movw	r30, r28
- 212:	e1 0f       	add	r30, r17
- 214:	f1 1d       	adc	r31, r1
- 216:	22 e0       	ldi	r18, 0x02	; 2
- 218:	40 e0       	ldi	r20, 0x00	; 0
- 21a:	61 81       	ldd	r22, Z+1	; 0x01
- 21c:	ce 01       	movw	r24, r28
- 21e:	65 df       	rcall	.-310    	; 0xea <_ZN4Port12shift74ch595Ecccc>
-}
- 220:	df 91       	pop	r29
- 222:	cf 91       	pop	r28
- 224:	1f 91       	pop	r17
- 226:	0f 91       	pop	r16
- 228:	08 95       	ret
-
-0000022a <_ZN7Display14interruptSetupEv>:
-
-void Display::interruptSetup(){
-	GIMSK |=  (1<<PCIE);
- 22a:	8b b7       	in	r24, 0x3b	; 59
- 22c:	80 62       	ori	r24, 0x20	; 32
- 22e:	8b bf       	out	0x3b, r24	; 59
-	//Habilita interruptção do EXT0
-	//Habilita interrupção por "pin change"
-	//Só existe uma interrupção externa comum - INT0
-	//Todos os pinos de PCINT[5:0] geram a mesma interrupção
-
-	PCMSK |= (1 << PCINT3);
- 230:	ab 9a       	sbi	0x15, 3	; 21
-	//Habilita o pin0 como gerador da interrupção PCINT
-	//Poderiamos colocar os outros também, que iriam gerar apenas a mesma interrupção
-	sei();
- 232:	78 94       	sei
- 234:	08 95       	ret
-
-00000236 <_ZN7Display9interruptEv>:
-	//Enable Global Interrupt
-}
-void Display::interrupt(){
- 236:	1f 93       	push	r17
- 238:	cf 93       	push	r28
- 23a:	df 93       	push	r29
- 23c:	ec 01       	movw	r28, r24
+000001ee <_ZN7Display12writeDisplayEv>:
 	}
 	
+	
+
 }
-char Port::read(char pin){
-	char ch;
-	ch = PINB;
- 23e:	86 b3       	in	r24, 0x16	; 22
-	while(Port::read(SWPIN)==0x01){
- 240:	b3 9b       	sbis	0x16, 3	; 22
- 242:	16 c0       	rjmp	.+44     	; 0x270 <__stack+0x11>
-		n++;
-		if(n>99){
-			n=99;
- 244:	13 e6       	ldi	r17, 0x63	; 99
-	sei();
-	//Enable Global Interrupt
+void Display::writeDisplay(){
+ 1ee:	0f 93       	push	r16
+ 1f0:	1f 93       	push	r17
+ 1f2:	cf 93       	push	r28
+ 1f4:	df 93       	push	r29
+ 1f6:	ec 01       	movw	r28, r24
+    int i=0,j=0;
+	i = n/10;
+ 1f8:	88 81       	ld	r24, Y
+	j= n%10;
+ 1fa:	6a e0       	ldi	r22, 0x0A	; 10
+ 1fc:	e4 d0       	rcall	.+456    	; 0x3c6 <__udivmodqi4>
+ 1fe:	18 2f       	mov	r17, r24
+	Port::shift74ch595(display[j],DATAPIN,SHPIN,STPIN);
+ 200:	fe 01       	movw	r30, r28
+ 202:	e9 0f       	add	r30, r25
+ 204:	f1 1d       	adc	r31, r1
+ 206:	01 e0       	ldi	r16, 0x01	; 1
+ 208:	22 e0       	ldi	r18, 0x02	; 2
+ 20a:	40 e0       	ldi	r20, 0x00	; 0
+ 20c:	61 81       	ldd	r22, Z+1	; 0x01
+ 20e:	ce 01       	movw	r24, r28
+ 210:	6c df       	rcall	.-296    	; 0xea <_ZN4Port12shift74ch595Ecccc>
+	Port::shift74ch595(display[i],DATAPIN,SHPIN,STPIN);
+ 212:	fe 01       	movw	r30, r28
+ 214:	e1 0f       	add	r30, r17
+ 216:	f1 1d       	adc	r31, r1
+ 218:	22 e0       	ldi	r18, 0x02	; 2
+ 21a:	40 e0       	ldi	r20, 0x00	; 0
+ 21c:	61 81       	ldd	r22, Z+1	; 0x01
+ 21e:	ce 01       	movw	r24, r28
+ 220:	64 df       	rcall	.-312    	; 0xea <_ZN4Port12shift74ch595Ecccc>
 }
-void Display::interrupt(){
-	while(Port::read(SWPIN)==0x01){
-		n++;
- 246:	88 81       	ld	r24, Y
- 248:	8f 5f       	subi	r24, 0xFF	; 255
-		if(n>99){
- 24a:	84 36       	cpi	r24, 0x64	; 100
- 24c:	10 f4       	brcc	.+4      	; 0x252 <_ZN7Display9interruptEv+0x1c>
-	sei();
-	//Enable Global Interrupt
+ 222:	df 91       	pop	r29
+ 224:	cf 91       	pop	r28
+ 226:	1f 91       	pop	r17
+ 228:	0f 91       	pop	r16
+ 22a:	08 95       	ret
+
+0000022c <_ZN7Display9countdownEv>:
+        for(int i=0;i<=9;i++){
+            display[i] = aux[i];
+        }
 }
-void Display::interrupt(){
-	while(Port::read(SWPIN)==0x01){
-		n++;
- 24e:	88 83       	st	Y, r24
- 250:	01 c0       	rjmp	.+2      	; 0x254 <_ZN7Display9interruptEv+0x1e>
-		if(n>99){
-			n=99;
- 252:	18 83       	st	Y, r17
-		}
-		writeDisplay();
- 254:	ce 01       	movw	r24, r28
- 256:	ca df       	rcall	.-108    	; 0x1ec <_ZN7Display12writeDisplayEv>
+
+void Display::countdown(){
+ 22c:	0f 93       	push	r16
+ 22e:	1f 93       	push	r17
+ 230:	cf 93       	push	r28
+ 232:	df 93       	push	r29
+ 234:	ec 01       	movw	r28, r24
+	if(n != 0){
+ 236:	88 81       	ld	r24, Y
+ 238:	88 23       	and	r24, r24
+ 23a:	11 f0       	breq	.+4      	; 0x240 <_ZN7Display9countdownEv+0x14>
+		n--;
+ 23c:	81 50       	subi	r24, 0x01	; 1
+ 23e:	88 83       	st	Y, r24
+	}
+	writeDisplay();
+ 240:	ce 01       	movw	r24, r28
+ 242:	d5 df       	rcall	.-86     	; 0x1ee <_ZN7Display12writeDisplayEv>
+	if((n==0) && (finish == 0)){
+ 244:	88 81       	ld	r24, Y
+ 246:	81 11       	cpse	r24, r1
+ 248:	26 c0       	rjmp	.+76     	; 0x296 <__stack+0x37>
+ 24a:	8b 85       	ldd	r24, Y+11	; 0x0b
+ 24c:	81 11       	cpse	r24, r1
+ 24e:	23 c0       	rjmp	.+70     	; 0x296 <__stack+0x37>
+		finish =1;
+ 250:	81 e0       	ldi	r24, 0x01	; 1
+ 252:	8b 87       	std	Y+11, r24	; 0x0b
+ 254:	0b e0       	ldi	r16, 0x0B	; 11
+ 256:	10 e0       	ldi	r17, 0x00	; 0
+		for(int i=0;i<=10;i++){
+			Port::write(LEDPIN,1);
+ 258:	41 e0       	ldi	r20, 0x01	; 1
+ 25a:	64 e0       	ldi	r22, 0x04	; 4
+ 25c:	ce 01       	movw	r24, r28
+ 25e:	2e df       	rcall	.-420    	; 0xbc <_ZN4Port5writeEcc>
 	#else
 		//round up by default
 		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
 	#endif
 
 	__builtin_avr_delay_cycles(__ticks_dc);
- 258:	2f ef       	ldi	r18, 0xFF	; 255
- 25a:	84 e3       	ldi	r24, 0x34	; 52
- 25c:	9c e0       	ldi	r25, 0x0C	; 12
- 25e:	21 50       	subi	r18, 0x01	; 1
- 260:	80 40       	sbci	r24, 0x00	; 0
- 262:	90 40       	sbci	r25, 0x00	; 0
- 264:	e1 f7       	brne	.-8      	; 0x25e <_ZN7Display9interruptEv+0x28>
- 266:	00 c0       	rjmp	.+0      	; 0x268 <__stack+0x9>
- 268:	00 00       	nop
- 26a:	86 b3       	in	r24, 0x16	; 22
-	//Poderiamos colocar os outros também, que iriam gerar apenas a mesma interrupção
+ 260:	2f ef       	ldi	r18, 0xFF	; 255
+ 262:	80 e7       	ldi	r24, 0x70	; 112
+ 264:	92 e0       	ldi	r25, 0x02	; 2
+ 266:	21 50       	subi	r18, 0x01	; 1
+ 268:	80 40       	sbci	r24, 0x00	; 0
+ 26a:	90 40       	sbci	r25, 0x00	; 0
+ 26c:	e1 f7       	brne	.-8      	; 0x266 <__stack+0x7>
+ 26e:	00 c0       	rjmp	.+0      	; 0x270 <__stack+0x11>
+ 270:	00 00       	nop
+			_delay_ms(100);
+			Port::write(LEDPIN,0);
+ 272:	40 e0       	ldi	r20, 0x00	; 0
+ 274:	64 e0       	ldi	r22, 0x04	; 4
+ 276:	ce 01       	movw	r24, r28
+ 278:	21 df       	rcall	.-446    	; 0xbc <_ZN4Port5writeEcc>
+ 27a:	2f ef       	ldi	r18, 0xFF	; 255
+ 27c:	80 e7       	ldi	r24, 0x70	; 112
+ 27e:	92 e0       	ldi	r25, 0x02	; 2
+ 280:	21 50       	subi	r18, 0x01	; 1
+ 282:	80 40       	sbci	r24, 0x00	; 0
+ 284:	90 40       	sbci	r25, 0x00	; 0
+ 286:	e1 f7       	brne	.-8      	; 0x280 <__stack+0x21>
+ 288:	00 c0       	rjmp	.+0      	; 0x28a <__stack+0x2b>
+ 28a:	00 00       	nop
+ 28c:	01 50       	subi	r16, 0x01	; 1
+ 28e:	11 09       	sbc	r17, r1
+		n--;
+	}
+	writeDisplay();
+	if((n==0) && (finish == 0)){
+		finish =1;
+		for(int i=0;i<=10;i++){
+ 290:	01 15       	cp	r16, r1
+ 292:	11 05       	cpc	r17, r1
+ 294:	09 f7       	brne	.-62     	; 0x258 <_ZN7Display9countdownEv+0x2c>
+		}
+	}
+	
+	
+
+}
+ 296:	df 91       	pop	r29
+ 298:	cf 91       	pop	r28
+ 29a:	1f 91       	pop	r17
+ 29c:	0f 91       	pop	r16
+ 29e:	08 95       	ret
+
+000002a0 <_ZN7Display14interruptSetupEv>:
+	Port::shift74ch595(display[j],DATAPIN,SHPIN,STPIN);
+	Port::shift74ch595(display[i],DATAPIN,SHPIN,STPIN);
+}
+
+void Display::interruptSetup(){
+	GIMSK |=  (1<<PCIE);
+ 2a0:	8b b7       	in	r24, 0x3b	; 59
+ 2a2:	80 62       	ori	r24, 0x20	; 32
+ 2a4:	8b bf       	out	0x3b, r24	; 59
+	PCMSK |= (1 << PCINT3);
+ 2a6:	ab 9a       	sbi	0x15, 3	; 21
 	sei();
-	//Enable Global Interrupt
+ 2a8:	78 94       	sei
+ 2aa:	08 95       	ret
+
+000002ac <_ZN7Display9interruptEv>:
 }
 void Display::interrupt(){
+ 2ac:	ff 92       	push	r15
+ 2ae:	0f 93       	push	r16
+ 2b0:	1f 93       	push	r17
+ 2b2:	cf 93       	push	r28
+ 2b4:	df 93       	push	r29
+ 2b6:	ec 01       	movw	r28, r24
+	char speed=0;
+	if(finish == 1){
+ 2b8:	8b 85       	ldd	r24, Y+11	; 0x0b
+ 2ba:	81 30       	cpi	r24, 0x01	; 1
+ 2bc:	09 f4       	brne	.+2      	; 0x2c0 <_ZN7Display9interruptEv+0x14>
+		finish = 0;
+ 2be:	1b 86       	std	Y+11, r1	; 0x0b
+	}
+	
+}
+char Port::read(char pin){
+	char ch;
+	ch = PINB;
+ 2c0:	86 b3       	in	r24, 0x16	; 22
+	}
 	while(Port::read(SWPIN)==0x01){
- 26c:	b3 99       	sbic	0x16, 3	; 22
- 26e:	eb cf       	rjmp	.-42     	; 0x246 <_ZN7Display9interruptEv+0x10>
+ 2c2:	b3 9b       	sbis	0x16, 3	; 22
+ 2c4:	37 c0       	rjmp	.+110    	; 0x334 <_ZN7Display9interruptEv+0x88>
+ 2c6:	10 e0       	ldi	r17, 0x00	; 0
+		n++;
+		speed++;
+		if(n>99){
+			n=99;
+ 2c8:	0f 2e       	mov	r0, r31
+ 2ca:	f3 e6       	ldi	r31, 0x63	; 99
+ 2cc:	ff 2e       	mov	r15, r31
+ 2ce:	f0 2d       	mov	r31, r0
+ 2d0:	04 e1       	ldi	r16, 0x14	; 20
+	char speed=0;
+	if(finish == 1){
+		finish = 0;
+	}
+	while(Port::read(SWPIN)==0x01){
+		n++;
+ 2d2:	88 81       	ld	r24, Y
+ 2d4:	8f 5f       	subi	r24, 0xFF	; 255
+		speed++;
+ 2d6:	1f 5f       	subi	r17, 0xFF	; 255
+		if(n>99){
+ 2d8:	84 36       	cpi	r24, 0x64	; 100
+ 2da:	10 f4       	brcc	.+4      	; 0x2e0 <_ZN7Display9interruptEv+0x34>
+	char speed=0;
+	if(finish == 1){
+		finish = 0;
+	}
+	while(Port::read(SWPIN)==0x01){
+		n++;
+ 2dc:	88 83       	st	Y, r24
+ 2de:	01 c0       	rjmp	.+2      	; 0x2e2 <_ZN7Display9interruptEv+0x36>
+		speed++;
+		if(n>99){
+			n=99;
+ 2e0:	f8 82       	st	Y, r15
 		}
 		writeDisplay();
-		_delay_ms(500);
+ 2e2:	ce 01       	movw	r24, r28
+ 2e4:	84 df       	rcall	.-248    	; 0x1ee <_ZN7Display12writeDisplayEv>
+		if(speed<=3){
+ 2e6:	14 30       	cpi	r17, 0x04	; 4
+ 2e8:	50 f4       	brcc	.+20     	; 0x2fe <_ZN7Display9interruptEv+0x52>
+ 2ea:	2f ef       	ldi	r18, 0xFF	; 255
+ 2ec:	84 e3       	ldi	r24, 0x34	; 52
+ 2ee:	9c e0       	ldi	r25, 0x0C	; 12
+ 2f0:	21 50       	subi	r18, 0x01	; 1
+ 2f2:	80 40       	sbci	r24, 0x00	; 0
+ 2f4:	90 40       	sbci	r25, 0x00	; 0
+ 2f6:	e1 f7       	brne	.-8      	; 0x2f0 <_ZN7Display9interruptEv+0x44>
+ 2f8:	00 c0       	rjmp	.+0      	; 0x2fa <_ZN7Display9interruptEv+0x4e>
+ 2fa:	00 00       	nop
+ 2fc:	15 c0       	rjmp	.+42     	; 0x328 <_ZN7Display9interruptEv+0x7c>
+			_delay_ms(500);
+		}
+		else if(speed <= 10){
+ 2fe:	1b 30       	cpi	r17, 0x0B	; 11
+ 300:	50 f4       	brcc	.+20     	; 0x316 <_ZN7Display9interruptEv+0x6a>
+ 302:	2f ef       	ldi	r18, 0xFF	; 255
+ 304:	81 ee       	ldi	r24, 0xE1	; 225
+ 306:	94 e0       	ldi	r25, 0x04	; 4
+ 308:	21 50       	subi	r18, 0x01	; 1
+ 30a:	80 40       	sbci	r24, 0x00	; 0
+ 30c:	90 40       	sbci	r25, 0x00	; 0
+ 30e:	e1 f7       	brne	.-8      	; 0x308 <_ZN7Display9interruptEv+0x5c>
+ 310:	00 c0       	rjmp	.+0      	; 0x312 <_ZN7Display9interruptEv+0x66>
+ 312:	00 00       	nop
+ 314:	09 c0       	rjmp	.+18     	; 0x328 <_ZN7Display9interruptEv+0x7c>
+ 316:	2f ef       	ldi	r18, 0xFF	; 255
+ 318:	80 e7       	ldi	r24, 0x70	; 112
+ 31a:	92 e0       	ldi	r25, 0x02	; 2
+ 31c:	21 50       	subi	r18, 0x01	; 1
+ 31e:	80 40       	sbci	r24, 0x00	; 0
+ 320:	90 40       	sbci	r25, 0x00	; 0
+ 322:	e1 f7       	brne	.-8      	; 0x31c <_ZN7Display9interruptEv+0x70>
+ 324:	00 c0       	rjmp	.+0      	; 0x326 <_ZN7Display9interruptEv+0x7a>
+ 326:	00 00       	nop
+ 328:	15 31       	cpi	r17, 0x15	; 21
+ 32a:	08 f0       	brcs	.+2      	; 0x32e <_ZN7Display9interruptEv+0x82>
+ 32c:	10 2f       	mov	r17, r16
+ 32e:	86 b3       	in	r24, 0x16	; 22
+void Display::interrupt(){
+	char speed=0;
+	if(finish == 1){
+		finish = 0;
+	}
+	while(Port::read(SWPIN)==0x01){
+ 330:	b3 99       	sbic	0x16, 3	; 22
+ 332:	cf cf       	rjmp	.-98     	; 0x2d2 <_ZN7Display9interruptEv+0x26>
+		}
+		if(speed>20) speed = 20;
 	}
 
-}
- 270:	df 91       	pop	r29
- 272:	cf 91       	pop	r28
- 274:	1f 91       	pop	r17
- 276:	08 95       	ret
 
-00000278 <main>:
+}
+ 334:	df 91       	pop	r29
+ 336:	cf 91       	pop	r28
+ 338:	1f 91       	pop	r17
+ 33a:	0f 91       	pop	r16
+ 33c:	ff 90       	pop	r15
+ 33e:	08 95       	ret
+
+00000340 <main>:
 
 void Port::setMode(char pin, char mode){
 	//Mode 1 -> output
 	//Mode 0 -> input
 	if( (pin>=0) && (pin <= 5) && ((mode==0)||(mode==1))){
 		DDRB = (DDRB & ~(0x01 << pin)) | (mode << pin); 
- 278:	b8 9a       	sbi	0x17, 0	; 23
- 27a:	ba 9a       	sbi	0x17, 2	; 23
- 27c:	b9 9a       	sbi	0x17, 1	; 23
- 27e:	bb 98       	cbi	0x17, 3	; 23
+ 340:	b8 9a       	sbi	0x17, 0	; 23
+ 342:	ba 9a       	sbi	0x17, 2	; 23
+ 344:	b9 9a       	sbi	0x17, 1	; 23
+ 346:	bb 98       	cbi	0x17, 3	; 23
 
 	display.Port::setMode(DATAPIN,OUT); //out pb0
 	display.Port::setMode(SHPIN,OUT); //out pb2
 	display.Port::setMode(STPIN,OUT); //out pb1
 	display.Port::setMode(SWPIN,IN);
 	display.Port::changePullUp(SWPIN,0);
- 280:	40 e0       	ldi	r20, 0x00	; 0
- 282:	63 e0       	ldi	r22, 0x03	; 3
- 284:	8a e6       	ldi	r24, 0x6A	; 106
- 286:	90 e0       	ldi	r25, 0x00	; 0
- 288:	f8 de       	rcall	.-528    	; 0x7a <_ZN4Port12changePullUpEcc>
- 28a:	bc 9a       	sbi	0x17, 4	; 23
+ 348:	40 e0       	ldi	r20, 0x00	; 0
+ 34a:	63 e0       	ldi	r22, 0x03	; 3
+ 34c:	8a e6       	ldi	r24, 0x6A	; 106
+ 34e:	90 e0       	ldi	r25, 0x00	; 0
+ 350:	94 de       	rcall	.-728    	; 0x7a <_ZN4Port12changePullUpEcc>
+ 352:	bc 9a       	sbi	0x17, 4	; 23
 	display.Port::setMode(LEDPIN,OUT);
 	display.interruptSetup();
- 28c:	8a e6       	ldi	r24, 0x6A	; 106
- 28e:	90 e0       	ldi	r25, 0x00	; 0
- 290:	cc df       	rcall	.-104    	; 0x22a <_ZN7Display14interruptSetupEv>
+ 354:	8a e6       	ldi	r24, 0x6A	; 106
+ 356:	90 e0       	ldi	r25, 0x00	; 0
+ 358:	a3 df       	rcall	.-186    	; 0x2a0 <_ZN7Display14interruptSetupEv>
 
 	while(1){
 
-		display.writeDisplay();
-		_delay_ms(500);
-		if(display.n<=0) display.n=100;
- 292:	c4 e6       	ldi	r28, 0x64	; 100
-	display.Port::setMode(LEDPIN,OUT);
-	display.interruptSetup();
+		display.countdown();
+ 35a:	8a e6       	ldi	r24, 0x6A	; 106
+ 35c:	90 e0       	ldi	r25, 0x00	; 0
+ 35e:	66 df       	rcall	.-308    	; 0x22c <_ZN7Display9countdownEv>
+ 360:	2f ef       	ldi	r18, 0xFF	; 255
+ 362:	84 e3       	ldi	r24, 0x34	; 52
+ 364:	9c e0       	ldi	r25, 0x0C	; 12
+ 366:	21 50       	subi	r18, 0x01	; 1
+ 368:	80 40       	sbci	r24, 0x00	; 0
+ 36a:	90 40       	sbci	r25, 0x00	; 0
+ 36c:	e1 f7       	brne	.-8      	; 0x366 <main+0x26>
+ 36e:	00 c0       	rjmp	.+0      	; 0x370 <main+0x30>
+ 370:	00 00       	nop
+ 372:	f3 cf       	rjmp	.-26     	; 0x35a <main+0x1a>
 
-	while(1){
-
-		display.writeDisplay();
- 294:	8a e6       	ldi	r24, 0x6A	; 106
- 296:	90 e0       	ldi	r25, 0x00	; 0
- 298:	a9 df       	rcall	.-174    	; 0x1ec <_ZN7Display12writeDisplayEv>
- 29a:	2f ef       	ldi	r18, 0xFF	; 255
- 29c:	84 e3       	ldi	r24, 0x34	; 52
- 29e:	9c e0       	ldi	r25, 0x0C	; 12
- 2a0:	21 50       	subi	r18, 0x01	; 1
- 2a2:	80 40       	sbci	r24, 0x00	; 0
- 2a4:	90 40       	sbci	r25, 0x00	; 0
- 2a6:	e1 f7       	brne	.-8      	; 0x2a0 <main+0x28>
- 2a8:	00 c0       	rjmp	.+0      	; 0x2aa <main+0x32>
- 2aa:	00 00       	nop
-		_delay_ms(500);
-		if(display.n<=0) display.n=100;
- 2ac:	80 91 6a 00 	lds	r24, 0x006A
- 2b0:	81 11       	cpse	r24, r1
- 2b2:	02 c0       	rjmp	.+4      	; 0x2b8 <main+0x40>
- 2b4:	c0 93 6a 00 	sts	0x006A, r28
-		display.n--;
- 2b8:	ea e6       	ldi	r30, 0x6A	; 106
- 2ba:	f0 e0       	ldi	r31, 0x00	; 0
- 2bc:	80 81       	ld	r24, Z
- 2be:	81 50       	subi	r24, 0x01	; 1
- 2c0:	80 83       	st	Z, r24
-const int SWPIN = PB3;
-
-#include "Display.cpp"	
-
-Display display;
-int main(void)
- 2c2:	e8 cf       	rjmp	.-48     	; 0x294 <main+0x1c>
-
-000002c4 <__vector_2>:
+00000374 <__vector_2>:
 
 }
 
 
 
 ISR(PCINT0_vect){
- 2c4:	1f 92       	push	r1
- 2c6:	0f 92       	push	r0
- 2c8:	0f b6       	in	r0, 0x3f	; 63
- 2ca:	0f 92       	push	r0
- 2cc:	11 24       	eor	r1, r1
- 2ce:	2f 93       	push	r18
- 2d0:	3f 93       	push	r19
- 2d2:	4f 93       	push	r20
- 2d4:	5f 93       	push	r21
- 2d6:	6f 93       	push	r22
- 2d8:	7f 93       	push	r23
- 2da:	8f 93       	push	r24
- 2dc:	9f 93       	push	r25
- 2de:	af 93       	push	r26
- 2e0:	bf 93       	push	r27
- 2e2:	ef 93       	push	r30
- 2e4:	ff 93       	push	r31
+ 374:	1f 92       	push	r1
+ 376:	0f 92       	push	r0
+ 378:	0f b6       	in	r0, 0x3f	; 63
+ 37a:	0f 92       	push	r0
+ 37c:	11 24       	eor	r1, r1
+ 37e:	2f 93       	push	r18
+ 380:	3f 93       	push	r19
+ 382:	4f 93       	push	r20
+ 384:	5f 93       	push	r21
+ 386:	6f 93       	push	r22
+ 388:	7f 93       	push	r23
+ 38a:	8f 93       	push	r24
+ 38c:	9f 93       	push	r25
+ 38e:	af 93       	push	r26
+ 390:	bf 93       	push	r27
+ 392:	ef 93       	push	r30
+ 394:	ff 93       	push	r31
 	display.interrupt();	
- 2e6:	8a e6       	ldi	r24, 0x6A	; 106
- 2e8:	90 e0       	ldi	r25, 0x00	; 0
- 2ea:	a5 df       	rcall	.-182    	; 0x236 <_ZN7Display9interruptEv>
- 2ec:	ff 91       	pop	r31
- 2ee:	ef 91       	pop	r30
- 2f0:	bf 91       	pop	r27
- 2f2:	af 91       	pop	r26
- 2f4:	9f 91       	pop	r25
- 2f6:	8f 91       	pop	r24
- 2f8:	7f 91       	pop	r23
- 2fa:	6f 91       	pop	r22
- 2fc:	5f 91       	pop	r21
- 2fe:	4f 91       	pop	r20
- 300:	3f 91       	pop	r19
- 302:	2f 91       	pop	r18
- 304:	0f 90       	pop	r0
- 306:	0f be       	out	0x3f, r0	; 63
- 308:	0f 90       	pop	r0
- 30a:	1f 90       	pop	r1
- 30c:	18 95       	reti
+ 396:	8a e6       	ldi	r24, 0x6A	; 106
+ 398:	90 e0       	ldi	r25, 0x00	; 0
+ 39a:	88 df       	rcall	.-240    	; 0x2ac <_ZN7Display9interruptEv>
+ 39c:	ff 91       	pop	r31
+ 39e:	ef 91       	pop	r30
+ 3a0:	bf 91       	pop	r27
+ 3a2:	af 91       	pop	r26
+ 3a4:	9f 91       	pop	r25
+ 3a6:	8f 91       	pop	r24
+ 3a8:	7f 91       	pop	r23
+ 3aa:	6f 91       	pop	r22
+ 3ac:	5f 91       	pop	r21
+ 3ae:	4f 91       	pop	r20
+ 3b0:	3f 91       	pop	r19
+ 3b2:	2f 91       	pop	r18
+ 3b4:	0f 90       	pop	r0
+ 3b6:	0f be       	out	0x3f, r0	; 63
+ 3b8:	0f 90       	pop	r0
+ 3ba:	1f 90       	pop	r1
+ 3bc:	18 95       	reti
 
-0000030e <_GLOBAL__sub_I__ZN4PortC2Ev>:
+000003be <_GLOBAL__sub_I__ZN4PortC2Ev>:
 const int LEDPIN = PB4;
 const int SWPIN = PB3;
 
 #include "Display.cpp"	
 
 Display display;
- 30e:	8a e6       	ldi	r24, 0x6A	; 106
- 310:	90 e0       	ldi	r25, 0x00	; 0
- 312:	38 df       	rcall	.-400    	; 0x184 <_ZN7DisplayC1Ev>
- 314:	08 95       	ret
+ 3be:	8a e6       	ldi	r24, 0x6A	; 106
+ 3c0:	90 e0       	ldi	r25, 0x00	; 0
+ 3c2:	e0 de       	rcall	.-576    	; 0x184 <_ZN7DisplayC1Ev>
+ 3c4:	08 95       	ret
 
-00000316 <__udivmodqi4>:
- 316:	99 1b       	sub	r25, r25
- 318:	79 e0       	ldi	r23, 0x09	; 9
- 31a:	04 c0       	rjmp	.+8      	; 0x324 <__udivmodqi4_ep>
+000003c6 <__udivmodqi4>:
+ 3c6:	99 1b       	sub	r25, r25
+ 3c8:	79 e0       	ldi	r23, 0x09	; 9
+ 3ca:	04 c0       	rjmp	.+8      	; 0x3d4 <__udivmodqi4_ep>
 
-0000031c <__udivmodqi4_loop>:
- 31c:	99 1f       	adc	r25, r25
- 31e:	96 17       	cp	r25, r22
- 320:	08 f0       	brcs	.+2      	; 0x324 <__udivmodqi4_ep>
- 322:	96 1b       	sub	r25, r22
+000003cc <__udivmodqi4_loop>:
+ 3cc:	99 1f       	adc	r25, r25
+ 3ce:	96 17       	cp	r25, r22
+ 3d0:	08 f0       	brcs	.+2      	; 0x3d4 <__udivmodqi4_ep>
+ 3d2:	96 1b       	sub	r25, r22
 
-00000324 <__udivmodqi4_ep>:
- 324:	88 1f       	adc	r24, r24
- 326:	7a 95       	dec	r23
- 328:	c9 f7       	brne	.-14     	; 0x31c <__udivmodqi4_loop>
- 32a:	80 95       	com	r24
- 32c:	08 95       	ret
+000003d4 <__udivmodqi4_ep>:
+ 3d4:	88 1f       	adc	r24, r24
+ 3d6:	7a 95       	dec	r23
+ 3d8:	c9 f7       	brne	.-14     	; 0x3cc <__udivmodqi4_loop>
+ 3da:	80 95       	com	r24
+ 3dc:	08 95       	ret
 
-0000032e <__tablejump2__>:
- 32e:	ee 0f       	add	r30, r30
- 330:	ff 1f       	adc	r31, r31
+000003de <__tablejump2__>:
+ 3de:	ee 0f       	add	r30, r30
+ 3e0:	ff 1f       	adc	r31, r31
 
-00000332 <__tablejump__>:
- 332:	05 90       	lpm	r0, Z+
- 334:	f4 91       	lpm	r31, Z
- 336:	e0 2d       	mov	r30, r0
- 338:	09 94       	ijmp
+000003e2 <__tablejump__>:
+ 3e2:	05 90       	lpm	r0, Z+
+ 3e4:	f4 91       	lpm	r31, Z
+ 3e6:	e0 2d       	mov	r30, r0
+ 3e8:	09 94       	ijmp
 
-0000033a <_exit>:
- 33a:	f8 94       	cli
+000003ea <_exit>:
+ 3ea:	f8 94       	cli
 
-0000033c <__stop_program>:
- 33c:	ff cf       	rjmp	.-2      	; 0x33c <__stop_program>
+000003ec <__stop_program>:
+ 3ec:	ff cf       	rjmp	.-2      	; 0x3ec <__stop_program>
