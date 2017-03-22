@@ -237,7 +237,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0x33e
+.text           0x00000000      0x3ee
  *(.vectors)
  .vectors       0x00000000       0x1e c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr25/crttn85.o
                 0x00000000                __vector_default
@@ -327,36 +327,39 @@ END GROUP
                 0x000000ea       0x9a double_digit_display_board.o
                 0x000000ea                _ZN4Port12shift74ch595Ecccc
  .text._ZN7DisplayC2Ev
-                0x00000184       0x68 double_digit_display_board.o
+                0x00000184       0x6a double_digit_display_board.o
                 0x00000184                _ZN7DisplayC2Ev
                 0x00000184                _ZN7DisplayC1Ev
  .text._ZN7Display12writeDisplayEv
-                0x000001ec       0x3e double_digit_display_board.o
-                0x000001ec                _ZN7Display12writeDisplayEv
+                0x000001ee       0x3e double_digit_display_board.o
+                0x000001ee                _ZN7Display12writeDisplayEv
+ .text._ZN7Display9countdownEv
+                0x0000022c       0x74 double_digit_display_board.o
+                0x0000022c                _ZN7Display9countdownEv
  .text._ZN7Display14interruptSetupEv
-                0x0000022a        0xc double_digit_display_board.o
-                0x0000022a                _ZN7Display14interruptSetupEv
+                0x000002a0        0xc double_digit_display_board.o
+                0x000002a0                _ZN7Display14interruptSetupEv
  .text._ZN7Display9interruptEv
-                0x00000236       0x42 double_digit_display_board.o
-                0x00000236                _ZN7Display9interruptEv
- .text.main     0x00000278       0x4c double_digit_display_board.o
-                0x00000278                main
+                0x000002ac       0x94 double_digit_display_board.o
+                0x000002ac                _ZN7Display9interruptEv
+ .text.main     0x00000340       0x34 double_digit_display_board.o
+                0x00000340                main
  .text.__vector_2
-                0x000002c4       0x4a double_digit_display_board.o
-                0x000002c4                __vector_2
+                0x00000374       0x4a double_digit_display_board.o
+                0x00000374                __vector_2
  .text._GLOBAL__sub_I__ZN4PortC2Ev
-                0x0000030e        0x8 double_digit_display_board.o
+                0x000003be        0x8 double_digit_display_board.o
  .text.libgcc.div
-                0x00000316       0x18 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25\libgcc.a(_udivmodqi4.o)
-                0x00000316                __udivmodqi4
- .text.libgcc   0x0000032e        0xc c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25\libgcc.a(_tablejump.o)
-                0x0000032e                __tablejump2__
-                0x00000332                __tablejump__
-                0x0000033a                . = ALIGN (0x2)
+                0x000003c6       0x18 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25\libgcc.a(_udivmodqi4.o)
+                0x000003c6                __udivmodqi4
+ .text.libgcc   0x000003de        0xc c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25\libgcc.a(_tablejump.o)
+                0x000003de                __tablejump2__
+                0x000003e2                __tablejump__
+                0x000003ea                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x0000033a        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25\libgcc.a(_exit.o)
-                0x0000033a                _exit
-                0x0000033a                exit
+ .fini9         0x000003ea        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25\libgcc.a(_exit.o)
+                0x000003ea                _exit
+                0x000003ea                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -375,11 +378,11 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x0000033a        0x4 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25\libgcc.a(_exit.o)
+ .fini0         0x000003ea        0x4 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr25\libgcc.a(_exit.o)
  *(.fini0)
-                0x0000033e                _etext = .
+                0x000003ee                _etext = .
 
-.data           0x00800060        0xa load address 0x0000033e
+.data           0x00800060        0xa load address 0x000003ee
                 0x00800060                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
@@ -391,23 +394,23 @@ END GROUP
                 0x0080006a                _edata = .
                 0x0080006a                PROVIDE (__data_end, .)
 
-.bss            0x0080006a        0xb
+.bss            0x0080006a        0xc
                 0x0080006a                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
- .bss.display   0x0080006a        0xb double_digit_display_board.o
+ .bss.display   0x0080006a        0xc double_digit_display_board.o
                 0x0080006a                display
  *(COMMON)
-                0x00800075                PROVIDE (__bss_end, .)
-                0x0000033e                __data_load_start = LOADADDR (.data)
-                0x00000348                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x00800076                PROVIDE (__bss_end, .)
+                0x000003ee                __data_load_start = LOADADDR (.data)
+                0x000003f8                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x00800075        0x0
-                0x00800075                PROVIDE (__noinit_start, .)
+.noinit         0x00800076        0x0
+                0x00800076                PROVIDE (__noinit_start, .)
  *(.noinit*)
-                0x00800075                PROVIDE (__noinit_end, .)
-                0x00800075                _end = .
-                0x00800075                PROVIDE (__heap_start, .)
+                0x00800076                PROVIDE (__noinit_end, .)
+                0x00800076                _end = .
+                0x00800076                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
  *(.eeprom*)
@@ -466,38 +469,38 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x00000000       0x88
+.debug_aranges  0x00000000       0x90
  *(.debug_aranges)
  .debug_aranges
-                0x00000000       0x88 double_digit_display_board.o
+                0x00000000       0x90 double_digit_display_board.o
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000      0xbba
+.debug_info     0x00000000      0xda1
  *(.debug_info .gnu.linkonce.wi.*)
- .debug_info    0x00000000      0xbba double_digit_display_board.o
+ .debug_info    0x00000000      0xda1 double_digit_display_board.o
 
-.debug_abbrev   0x00000000      0x379
+.debug_abbrev   0x00000000      0x399
  *(.debug_abbrev)
- .debug_abbrev  0x00000000      0x379 double_digit_display_board.o
+ .debug_abbrev  0x00000000      0x399 double_digit_display_board.o
 
-.debug_line     0x00000000      0x32a
+.debug_line     0x00000000      0x38b
  *(.debug_line .debug_line.* .debug_line_end)
- .debug_line    0x00000000      0x32a double_digit_display_board.o
+ .debug_line    0x00000000      0x38b double_digit_display_board.o
 
-.debug_frame    0x00000000      0x1ac
+.debug_frame    0x00000000      0x1dc
  *(.debug_frame)
- .debug_frame   0x00000000      0x1ac double_digit_display_board.o
+ .debug_frame   0x00000000      0x1dc double_digit_display_board.o
 
-.debug_str      0x00000000      0x3eb
+.debug_str      0x00000000      0x41a
  *(.debug_str)
- .debug_str     0x00000000      0x3eb double_digit_display_board.o
-                                0x439 (size before relaxing)
+ .debug_str     0x00000000      0x41a double_digit_display_board.o
+                                0x468 (size before relaxing)
 
-.debug_loc      0x00000000      0x6e2
+.debug_loc      0x00000000      0x8fb
  *(.debug_loc)
- .debug_loc     0x00000000      0x6e2 double_digit_display_board.o
+ .debug_loc     0x00000000      0x8fb double_digit_display_board.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -517,9 +520,9 @@ END GROUP
 .debug_pubtypes
  *(.debug_pubtypes)
 
-.debug_ranges   0x00000000       0x90
+.debug_ranges   0x00000000       0x98
  *(.debug_ranges)
- .debug_ranges  0x00000000       0x90 double_digit_display_board.o
+ .debug_ranges  0x00000000       0x98 double_digit_display_board.o
 
 .debug_macro
  *(.debug_macro)
