@@ -65,27 +65,14 @@ int main(void)
 		
 		
 		
-		port.write(DATAPIN,0);
-		_delay_us(30);
-		port.write(STPIN,0);
-		_delay_us(30);
-		port.write(SHPIN,0);
-		_delay_us(200);
-		
-		port.write(DATAPIN,1);
-		_delay_us(30);
-		port.write(STPIN,1);
-		_delay_us(30);
-		port.write(SHPIN,1);
-		_delay_us(200);
 		
 		
 		
-		//sendData(display[j]);
-		//sendData(display[i]);
+		sendData(display[j]);
+		sendData(display[i]);
 		
 	
-		
+		_delay_ms(300);
 
 		n++;
 		if(n>99) n=0;
@@ -94,7 +81,7 @@ int main(void)
 	return 0;
 
 }
-/*
+
 void sendData(char data){
 	char i,ch;
 	port.write(STPIN,0);
@@ -115,11 +102,10 @@ void sendData(char data){
 	port.write(STPIN,0);
 }
 
-*/
 
 
 
-
+/*
 void sendData(char data){
 	char i,ch;
 	PORTB = PORTB & ~(0x01 << STPIN);
@@ -130,7 +116,7 @@ void sendData(char data){
 		
 		PORTB = (PORTB & ~(0x01 << DATAPIN)) | ch;
 		_delay_us(TIME);
-		PORTB = PORTB | (0x01 << SHPIN);
+		port.write(SHPIN,1);
 		_delay_us(TIME);
 		PORTB = PORTB & ~(0x01 << SHPIN);
 		_delay_us(TIME);
@@ -140,3 +126,5 @@ void sendData(char data){
 	_delay_us(TIME);
 	PORTB = PORTB & ~(0x01 << STPIN);
 }
+
+*/
