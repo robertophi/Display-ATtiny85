@@ -13,7 +13,7 @@
 #include <avr/io.h>
 #include <util/delay.h>
 #include <avr/interrupt.h>
-#include "Port.cpp"
+
 
 
 
@@ -30,46 +30,32 @@
 #define n9 0b00111110
 
 
+const int DATAPIN = PB0;
+const int SHPIN = PB2;
+const int STPIN = PB1;
+const int LEDPIN = PB4;
+const int SWPIN = PB3;
 
+#include "Display.cpp"	
 
-void extInterruptSetup();
-void writeDisplay();
-
-
-#define DATAPIN PB0
-#define SHPIN PB2
-#define STPIN PB1
-#define LEDPIN PB4
-#define SWPIN PB3
-
-int n=99;
-Port port;
-char display[10];
-char d[10] = {n0,n1,n2,n3,n4,n5,n6,n7,n8,n9};
-display[10] = d[10];
+Display display;
 int main(void)
 {
-	
 
-	
-		
-	
-	port.setMode(DATAPIN,OUT); //out pb0
-	port.setMode(SHPIN,OUT); //out pb2
-	port.setMode(STPIN,OUT); //out pb1
-	port.setMode(SWPIN,IN); 
-	port.changePullUp(SWPIN,0);
-	port.setMode(LEDPIN,OUT);
-	
-	extInterruptSetup();
-	
-	
+	display.Port::setMode(DATAPIN,OUT); //out pb0
+	display.Port::setMode(SHPIN,OUT); //out pb2
+	display.Port::setMode(STPIN,OUT); //out pb1
+	display.Port::setMode(SWPIN,IN);
+	display.Port::changePullUp(SWPIN,0);
+	display.Port::setMode(LEDPIN,OUT);
+	display.interruptSetup();
+
 	while(1){
-		
-		writeDisplay();
+
+		display.writeDisplay();
 		_delay_ms(500);
-		if(n<=0) n=100;
-		n--;
+		if(display.n<=0) display.n=100;
+		display.n--;
 		
 	
 	}
@@ -80,40 +66,5 @@ int main(void)
 
 
 ISR(PCINT0_vect){
-	
-	while(port.read(SWPIN)==0x01){
-		n++;
-		if(n>99){
-			n=99;
-		}
-		writeDisplay();
-		_delay_ms(500);
-	}
-	
-}
-
-void writeDisplay(){
-	int i=0,j=0;
-	i = n/10;
-	j= n%10;
-	port.shift74ch595(display[j],DATAPIN,SHPIN,STPIN);
-	port.shift74ch595(display[i],DATAPIN,SHPIN,STPIN);
-}
-
-
-void extInterruptSetup(){
-	
-	GIMSK |=  (1<<PCIE);
-	//Habilita interruptção do EXT0
-	//Habilita interrupção por "pin change"
-	//Só existe uma interrupção externa comum - INT0
-	//Todos os pinos de PCINT[5:0] geram a mesma interrupção
-	
-	PCMSK |= (1 << PCINT3);
-	//Habilita o pin0 como gerador da interrupção PCINT
-	//Poderiamos colocar os outros também, que iriam gerar apenas a mesma interrupção
-	sei();
-	//Enable Global Interrupt
-	return;
-	
+	display.interrupt();	
 }
